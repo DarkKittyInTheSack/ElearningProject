@@ -6,7 +6,7 @@ const Header = () => {
     <header className='font-sans mx-auto '>
         <nav className='flex items-center p-3 border-gray-200 border-b-2'>
             <div className="flex items-center mr-3">
-                <Link to={'/'} className='px-3 py-2 w-28'>
+                <Link to={'/'} className='px-3 py-2 w-28 outline-none'>
                     <img src="https://www.udemy.com/staticx/udemy/images/v7/logo-udemy.svg" className='w-full block' />
                 </Link>
 
@@ -19,27 +19,27 @@ const Header = () => {
             </div>
 
 
-            <ul className='mx-2 flex list-none items-center'>
+            <ul className='mx-3 flex list-none items-center'>
                 <li>
-                    <button className='text-sm text-slate-700 mx-3 font-medium'>Udemy Business</button>
+                    <button className='text-sm text-slate-700 mr-3 ml-1 font-medium'>Udemy Business</button>
                 </li>
                 <li>
-                    <button className='text-sm text-slate-700 mx-3 font-medium'>Teach on Udemy</button>
+                    <button className='text-sm text-slate-700 mr-3 ml-1 font-medium'>Teach on Udemy</button>
                 </li>
                 <li>
-                    <button className='text-sm text-slate-700 mx-3 font-medium'>My Learning</button>
+                    <button className='text-sm text-slate-700 mr-3 ml-1 font-medium'>My Learning</button>
                 </li>
             </ul>
 
             <ul className='flex list-none items-center'>
                 <li>
-                    <button className='text-sm text-slate-700 mx-3 font-medium'><i className='fa-regular fa-heart text-lg'></i></button>
+                    <button className='text-sm text-slate-700 mr-3 ml-1 font-medium'><i className='fa-regular fa-heart text-lg'></i></button>
                 </li>
                 <li>
-                    <button className='text-sm text-slate-700 mx-3 font-medium'><i className='fa-solid fa-cart-shopping text-lg'></i></button>
+                    <button className='text-sm text-slate-700 mr-3 ml-1 font-medium'><i className='fa-solid fa-cart-shopping text-lg'></i></button>
                 </li>
                 <li>
-                    <button className='text-sm text-slate-700 mx-3 font-medium'><i className='fa-regular fa-bell text-lg'></i></button>
+                    <button className='text-sm text-slate-700 mr-3 ml-1 font-medium'><i className='fa-regular fa-bell text-lg'></i></button>
                 </li>
             </ul>
 
