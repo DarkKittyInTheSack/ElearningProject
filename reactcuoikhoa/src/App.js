@@ -1,11 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes,Route } from 'react-router-dom'
+import BasicTemplate from './templates/BasicTemplate/BasicTemplate';
 
 function App() {
   return (
-    <div className="App">
-      
-    </div>
+    <>
+      <Routes>
+        <Route element={<BasicTemplate/>} path='/'>
+
+        </Route>
+
+      </Routes>
+    </>
   );
 }
 
