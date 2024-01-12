@@ -1,7 +1,10 @@
-.start_learning_data{
-    display: flex !important;
-    margin-right: 1.5rem !important;
-    width: auto !important;
+.ant-card{
+    padding: 0 10px !important;
+    overflow: hidden !important;
+}
+
+.ant-card-body{
+    padding: 15px 0 !important;
 }
 
 .course_image{

@@ -19,6 +19,7 @@ const SampleNextArrow = props => {
           fontSize: '20px',
           lineHeight: '35px',
           borderRadius: '50%',
+          marginRight: '25px',
           border: '1px solid #fff'
         }}
         onClick={onClick}
@@ -68,7 +69,7 @@ const StartLearning = () => {
 
   return (
     <div className='my-10'>
-        <h2 className='font-bold text-3xl mb-8 px-5'>Let's start learning, Username</h2>
+        <h2 className='font-bold font-serif text-4xl mb-8 px-5'>Let's start learning, Username</h2>
         <Carousel {...setting} className='my-3 w-full space-x-4'>
             <div className="flex justify-between items-center px-2 py-4 border start_learning_data">
                 <img width={'96px'} height={'96px'} src="https://s.udemycdn.com/design-system/expressive-icons/light/1x/clock.png" alt="#" className='block mr-3 mb-3'/>
@@ -87,7 +88,7 @@ const StartLearning = () => {
                     </span>
                 </div>
                 <div className="mx-4 w-8/12 flex flex-col">
-                    <p className='font-bold text-sm text-gray-600 my-1'>NodeJS API development for beginners</p>
+                    <p className='font-bold text-sm text-gray-600 my-1 line-clamp-1'>NodeJS API development for beginners</p>
                     <span className='font-bold text-base mb-3'>1. What's NodeJS</span>
                     <p className='font-bold text-sm text-gray-500 mt-10'>Lecture &#8226; <span className='font-medium'>2m</span></p>
                 </div>

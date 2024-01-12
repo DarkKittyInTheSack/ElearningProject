@@ -69,8 +69,8 @@ const Banner = () => {
         <Carousel {...setting} >
             <div className="flex px-5 items-center"> 
                 <div className="absolute px-5 py-3 translate-x-24 top-14 bg-white z-10 banner_item">
-                    <h2 className='font-bold text-3xl mb-3'>Our New Year's Sale <br /> ends today</h2>
-                    <span className='font-medium text-base mb-3'>
+                    <h2 className='font-serif font-bold text-4xl my-3'>Our New Year's Sale <br /> ends today</h2>
+                    <span className='font-medium text-base block mb-4'>
                         GenAI is the #1 surging skill for 2024. Are you ready?
                         <br />Learn the latest skills from ₫199,000 to set yourself up
                         <br />for success.
@@ -80,8 +80,8 @@ const Banner = () => {
             </div>
             <div className="flex px-5 items-center"> 
                 <div className="absolute px-5 py-3 translate-x-24 top-14 bg-white z-10 banner_item">
-                    <h2 className='font-bold text-3xl mb-3'>Prep for your IT <br />certificate</h2>
-                    <span className='font-medium text-base mb-3'>
+                    <h2 className='font-serif font-bold text-4xl my-3'>Prep for your IT <br />certificate</h2>
+                    <span className='font-medium text-base block mb-4'>
                         <u className='text-blue-700'>Explore a future in IT</u>. Start learning toward AWS
                         <br /> certification, CompTIA A+ certification, and more.
                     </span>
@@ -90,8 +90,8 @@ const Banner = () => {
             </div>
             <div className="flex px-5 items-center"> 
                 <div className="absolute px-5 py-3 translate-x-24 top-14 bg-white z-10 banner_item">
-                    <h2 className='font-bold text-3xl mb-3'>Slow and steady</h2>
-                    <span className='font-medium text-base mb-3'>
+                    <h2 className='font-serif font-bold text-4xl my-3'>Slow and steady</h2>
+                    <span className='font-medium text-base block mb-4'>
                         Try learning just 5-10 minutes a day. 
                         <u className='text-blue-700'>Continue your <br /> course</u> and reach your peak potential.
                     </span>
