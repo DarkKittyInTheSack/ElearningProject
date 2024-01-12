@@ -3,6 +3,7 @@ import { Carousel } from 'antd'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 
 import './Banner.scss'
+
 const SampleNextArrow = props => {
     const { className, style, onClick } = props
     return (
@@ -57,7 +58,7 @@ const SampleNextArrow = props => {
 const Banner = () => {
 
     const setting = {
-        autoplay: false,
+        autoplay: true,
         nextArrow: <SampleNextArrow/>,
         prevArrow: <SamplePrevArrow/>,
         arrows: true,

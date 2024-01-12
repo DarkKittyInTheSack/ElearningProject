@@ -1,0 +1,21 @@
+.start_learning_data{
+    display: flex !important;
+    margin: 0.5rem !important;
+    width: auto !important;
+}
+
+.course_image{
+    filter: brightness(70%);
+}
+
+.slick-slider .slick-prev{
+    &::before{
+        content: '';
+    }
+}
+
+.slick-slider .slick-next{
+    &::before{
+        content: '';
+    }
+}
