@@ -8,7 +8,7 @@ const RecomendCourse = () => {
         <h2 className='font-bold font-serif text-4xl mb-7'>What to learn next</h2>
         <span className='font-bold text-2xl'>Our top pick for you</span>
 
-        <div className="mb-10 mt-5 flex p-6 border">
+        <div className="mb-10 mt-5 flex p-6 border bg-gray-100 border-gray-200">
             <img src="https://img-b.udemycdn.com/course/480x270/4505104_8592_8.jpg" alt="" className='block ' />
             <div className="mx-6">
                 <h2 className='font-bold text-3xl'>The Full Stack Web Development <br /> Bootcamp  2024 - MERN STACK</h2>
