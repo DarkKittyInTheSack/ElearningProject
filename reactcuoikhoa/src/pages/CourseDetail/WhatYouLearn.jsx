@@ -1,0 +1,33 @@
+import React from 'react'
+
+const WhatYouLearn = () => {
+  return (
+    <div className='border border-gray-400 w-4/6 p-4 my-8'>
+        <h2 className='font-bold text-xl mb-5 px-2'>What you'll learn</h2>
+        <div className="grid grid-cols-2">
+            <p className='px-2 py-2 font-normal text-sm'>
+                <i className='fa-solid fa-check mr-5'></i>
+                Build fullstack blog application
+            </p>
+            <p className='px-2 py-2 font-normal text-sm'>
+                <i className='fa-solid fa-check mr-5'></i>
+                Build fullstack blog application
+            </p>
+            <p className='px-2 py-2 font-normal text-sm'>
+                <i className='fa-solid fa-check mr-5'></i>
+                Build fullstack blog application
+            </p>
+            <p className='px-2 py-2 font-normal text-sm'>
+                <i className='fa-solid fa-check mr-5'></i>
+                Build fullstack blog application
+            </p>
+            <p className='px-2 py-2 font-normal text-sm'>
+                <i className='fa-solid fa-check mr-5'></i>
+                Build fullstack blog application
+            </p>
+        </div>
+    </div>
+  )
+}
+
+export default WhatYouLearn

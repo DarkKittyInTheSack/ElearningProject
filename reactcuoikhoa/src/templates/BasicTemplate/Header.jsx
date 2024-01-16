@@ -10,7 +10,7 @@ const Header = () => {
                     <img src="https://www.udemy.com/staticx/udemy/images/v7/logo-udemy.svg" className='w-full block' />
                 </Link>
 
-                <button className='text-sm text-slate-700 mx-3 font-medium'>Categories</button>
+                <button className='text-sm text-slate-700 mx-3 font-normal'>Categories</button>
             </div>
 
             <div className="flex border border-slate-800 rounded-3xl w-4/12 bg-gray-200 p-3 mr-2">
@@ -21,32 +21,32 @@ const Header = () => {
 
             <ul className='mx-3 flex list-none items-center'>
                 <li>
-                    <button className='text-sm text-slate-700 mr-3 ml-1 font-medium'>Udemy Business</button>
+                    <button className='text-sm text-slate-700 mx-3 font-normal'>Udemy Business</button>
                 </li>
                 <li>
-                    <button className='text-sm text-slate-700 mr-3 ml-1 font-medium'>Teach on Udemy</button>
+                    <button className='text-sm text-slate-700 mx-3 font-normal'>Teach on Udemy</button>
                 </li>
                 <li>
-                    <button className='text-sm text-slate-700 mr-3 ml-1 font-medium'>My Learning</button>
+                    <button className='text-sm text-slate-700 mx-3 font-normal'>My Learning</button>
                 </li>
             </ul>
 
-            <ul className='flex list-none items-center'>
+            <ul className='flex list-none items-center mx-1'>
                 <li>
-                    <button className='text-sm text-slate-700 mr-3 ml-1 font-medium'><i className='fa-regular fa-heart text-lg'></i></button>
+                    <button className='text-sm text-slate-700 mx-3 font-medium'><i className='fa-regular fa-heart text-lg'></i></button>
                 </li>
                 <li>
-                    <button className='text-sm text-slate-700 mr-3 ml-1 font-medium'><i className='fa-solid fa-cart-shopping text-lg'></i></button>
+                    <button className='text-sm text-slate-700 mx-3 font-medium'><i className='fa-solid fa-cart-shopping text-lg'></i></button>
                 </li>
                 <li>
-                    <button className='text-sm text-slate-700 mr-3 ml-1 font-medium'><i className='fa-regular fa-bell text-lg'></i></button>
+                    <button className='text-sm text-slate-700 mx-3 font-medium'><i className='fa-regular fa-bell text-lg'></i></button>
                 </li>
             </ul>
 
             <div className='flex list-none items-center'>
-                    <button className='mx-0 text-sm text-black mx-3 font-medium border border-black border-t-2 border-b-2 border-l-2 border-r-2 px-3 py-2'>Login</button>
+                    <button className='mx-0 text-sm text-black  font-medium border border-black border-t-2 border-b-2 border-l-2 border-r-2 px-3 py-2'>Login</button>
                     <button className='text-sm text-white bg-black border border-black border-t-2 border-b-2 border-l-2 border-r-2 mx-3 font-medium px-3 py-2'>Sign Up</button>
-                    <button className='mx-0 text-sm text-center border border-black border-t-2 border-b-2 border-l-2 border-r-2 mx-3 font-medium px-3 py-2'><i className='fa-solid fa-globe'></i></button>
+                    <button className='mx-0 text-sm text-center border border-black border-t-2 border-b-2 border-l-2 border-r-2 font-medium px-3 py-2'><i className='fa-solid fa-globe'></i></button>
             </div>
         </nav>
         <nav className='py-2'>
