@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const CourseOveral = () => {
   return (
-    <div className='mx-5 p-5 text-white'>
+    <div className='mx-5 p-5 text-white relative'>
         <div className="flex my-3 items-center font-medium text-purple-400">
             <Link to={''} className='my-2 block text-sm'>Development</Link>
             <i className='fa-solid fa-chevron-right block text-xs text-white mx-2'></i>

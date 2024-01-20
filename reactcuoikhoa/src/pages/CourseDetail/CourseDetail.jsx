@@ -8,6 +8,7 @@ import CourseInstructors from './CourseInstructors'
 import CourseSameCategory from './CourseSameCategory'
 import CourseRating from './CourseRating'
 import RelativeCourse from './RelativeCourse'
+import CourseRightColumn from './CourseRightColumn'
 
 const CourseDetail = () => {
   return (
@@ -15,6 +16,7 @@ const CourseDetail = () => {
         <div className='bg-slate-800'>
             <div className='container mx-auto '>
                 <CourseOveral/>
+                <CourseRightColumn/>
             </div>
         </div>
         <div className="container mx-auto px-10">
