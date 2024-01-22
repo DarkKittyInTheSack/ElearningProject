@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { Menu,Rate,Radio, Checkbox } from 'antd'
-import './SearchMenu.scss'
-import SearchResultList from './SearchResultList'
+import './AllCourses.scss'
+import AllCoursesList from './AllCoursesList'
 
-const SearchResult = () => {
-
+const AllCourses = () => {
     const subMenuList = ['sub1','sub2','sub4']
     const [key,setKey] = useState(['sub1'])
     const SubMenu = Menu.SubMenu
@@ -13,9 +12,10 @@ const SearchResult = () => {
         subMenuList.indexOf(latest) === -1 ?
         setKey(keys) : (setKey(latest ? [latest] : []))
     }
+
   return (
-    <div className='container mx-auto'>
-        <h2 className='font-bold text-3xl my-10'>10,000 results for "lorem"</h2>
+    <div className='my-5'>
+        <h2 className='font-bold text-2xl mt-10 mb-5'>All development courses</h2>
         <div className="flex my-5 items-center justify-between">
             <div className="flex font-bold text-base">
                 <button className='border border-black px-3 py-4'><i className='fa-solid fa-arrow-up-wide-short mr-2'></i>Filter</button>
@@ -106,11 +106,10 @@ const SearchResult = () => {
                     </Menu.Item>
                 </SubMenu>
             </Menu>
-            <SearchResultList/>
+            <AllCoursesList/>
         </div>
     </div>
-    
   )
 }
 
-export default SearchResult
+export default AllCourses
