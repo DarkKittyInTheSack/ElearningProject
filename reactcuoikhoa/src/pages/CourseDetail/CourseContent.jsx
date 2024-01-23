@@ -28,7 +28,8 @@ const CourseContent = () => {
                         <p className='text-center uppercase px-3'><i className='fa-solid fa-chevron-down text-xs pr-3 pl-2'></i> Course Update and anything new</p>
                         <span className='font-normal text-gray-700 text-sm'>4 lectures &#8226; 2min</span>
                     </div>
-                    <ul className='p-4' id='dropdown_data' style={{display: 'none'}}>
+                </button>
+                <ul className='p-4 border-l-2 border-r-2 border-b-2' id='dropdown_data' style={{display: 'none'}}>
                         <li className='py-2'>
                             <div className="flex justify-between items-center font-normal text-sm">
                                 <div className='flex items-center'>
@@ -54,7 +55,6 @@ const CourseContent = () => {
                             </div>
                         </li>
                     </ul>
-                </button>
             </li>
             <li>
                 <button className='w-full border border-gray-400' onClick={() =>{
@@ -71,33 +71,34 @@ const CourseContent = () => {
                         <p className='text-center uppercase px-3'><i className='fa-solid fa-chevron-down text-xs pr-3 pl-2'></i> Course Update and anything new</p>
                         <span className='font-normal text-gray-700 text-sm'>4 lectures &#8226; 2min</span>
                     </div>
-                    <ul className='p-4' id='dropdown_data_2' style={{display: 'none'}}>
-                        <li className='py-2'>
-                            <div className="flex justify-between items-center font-normal text-sm">
-                                <div className='flex items-center'>
-                                    <i className='fa-regular fa-file mx-2'></i>
-                                    <p className='px-3 underline text-blue-800'>Log Information</p>
-                                </div>
-                                <div className="flex item-center">
-                                    <button className='underline text-blue-800 px-4'>Preview</button>
-                                    <span className='px-4 text-gray-500'>00:02</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li className='py-2'>
-                            <div className="flex justify-between items-center font-normal text-sm">
-                                <div className='flex items-center'>
-                                    <i className='fa-regular fa-file mx-2'></i>
-                                    <p className='px-3 underline text-blue-800'>Log Information</p>
-                                </div>
-                                <div className="flex item-center">
-                                    <button className='underline text-blue-800 px-4'>Preview</button>
-                                    <span className='px-4 text-gray-500'>00:02</span>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+                    
                 </button>
+                <ul className='p-4 border-l-2 border-r-2 border-b-2' id='dropdown_data_2' style={{display: 'none'}}>
+                        <li className='py-2'>
+                            <div className="flex justify-between items-center font-normal text-sm">
+                                <div className='flex items-center'>
+                                    <i className='fa-regular fa-file mx-2'></i>
+                                    <p className='px-3 underline text-blue-800'>Log Information</p>
+                                </div>
+                                <div className="flex item-center">
+                                    <button className='underline text-blue-800 px-4'>Preview</button>
+                                    <span className='px-4 text-gray-500'>00:02</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li className='py-2'>
+                            <div className="flex justify-between items-center font-normal text-sm">
+                                <div className='flex items-center'>
+                                    <i className='fa-regular fa-file mx-2'></i>
+                                    <p className='px-3 underline text-blue-800'>Log Information</p>
+                                </div>
+                                <div className="flex item-center">
+                                    <button className='underline text-blue-800 px-4'>Preview</button>
+                                    <span className='px-4 text-gray-500'>00:02</span>
+                                </div>
+                            </div>
+                        </li>
+                </ul>
             </li>
         </ul>
 

@@ -9,6 +9,8 @@ import Profile from './pages/ProfilePage/Profile';
 import PublicProfileView from './pages/ProfilePage/PublicProfileView';
 import Subcriptions from './pages/ProfilePage/Subcriptions';
 import PaymentMethods from './pages/ProfilePage/PaymentMethods';
+import BusinessTemplate from './templates/BusinessTemplate/BusinessTemplate';
+import BusinessHome from './pages/BusinessHome/BusinessHome';
 
 function App() {
   return (
@@ -26,6 +28,12 @@ function App() {
           <Route element={<PublicProfileView/>} path='/profile/public'/>
           <Route element={<Subcriptions/>} path='/profile/subcriptions'/>
           <Route element={<PaymentMethods/>} path='/profile/payments'/>
+        </Route>
+
+        <Route element={<BusinessTemplate/>} path='/business'>
+            <Route element={<BusinessHome/>} index>
+              
+            </Route>
         </Route>
 
       </Routes>
