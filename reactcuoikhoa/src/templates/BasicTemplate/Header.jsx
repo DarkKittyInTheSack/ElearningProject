@@ -89,9 +89,12 @@ const Header = () => {
             </button>
           </li>
           <li>
-            <button className="text-sm text-slate-700 mx-3 font-medium">
+            <Link
+              to="/announcement"
+              className="text-sm text-slate-700 mx-3 font-medium"
+            >
               <i className="fa-regular fa-bell text-lg"></i>
-            </button>
+            </Link>
           </li>
         </ul>
 
