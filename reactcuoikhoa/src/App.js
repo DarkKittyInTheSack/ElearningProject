@@ -6,7 +6,11 @@ import SignUp from "./pages/SignUp/SignUp";
 import Login from "./pages/Login/Login";
 import CheckOut from "./pages/CheckOut/CheckOut";
 import AnnounCement from "./pages/AnnounCement/AnnounCement";
-import AdminTemplate from "./pages/AdminTemplate/AdminTemplate";
+
+import QuanLyTaiKhoanHV from "./pages/QuanLyTaiKhoanHV/QuanLyTaiKhoanHV";
+import QuanLyTaiKhoanGV from "./pages/QuanLyTaiKhoanGV/QuanLyTaiKhoanGV";
+import QuanLyKhoaHoc from "./pages/QuanLyKhoaHoc/QuanLyKhoaHoc";
+import AdminTemplate from "./templates/AdminTemplate/AdminTemplate";
 
 function App() {
   return (
@@ -21,7 +25,11 @@ function App() {
 
           <Route element={<CourseDetail />} path="/detail" />
         </Route>
-        <Route element={<AdminTemplate />} path="/admin"></Route>
+        <Route element={<AdminTemplate />} path="/admin">
+          <Route element={<QuanLyTaiKhoanHV />} path="qlhv" />
+          <Route element={<QuanLyTaiKhoanGV />} path="qlgv" />
+          <Route element={<QuanLyKhoaHoc />} path="qlkh" />
+        </Route>
       </Routes>
     </>
   );
