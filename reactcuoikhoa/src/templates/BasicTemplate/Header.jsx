@@ -1,3 +1,4 @@
+
 import { useSignalEffect, useSignals } from "@preact/signals-react/runtime";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
@@ -8,6 +9,7 @@ import "./header.scss";
 import { CoursesService } from "../../services/CoursesService";
 
 const Header = () => {
+  
   const isResponsive = useSignals(false);
   const isMouseIn = useSignals(false);
   const { category } = useSelector((state) => state.coursesCategorySlice);
@@ -18,6 +20,37 @@ const Header = () => {
   const [searchData, setSearchData] = useState({});
   const [keyData, setKeyData] = useState("");
   const [pageData, setPageData] = useState(0);
+  
+  const { user } = useSelector((state) => state.userSlice);
+  const renderUser = () => {
+    if (user) {
+      return (
+        <>
+          <h1 className="text-3xl text-black">{user.hoTen}</h1>
+          <h1 className="text-3xl text-black">xóa</h1>
+          {/* kieu */}
+          {/* button xu lý */}
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Link
+            to={"/login"}
+            className="mx-0 text-sm text-black  font-medium border border-black border-t-2 border-b-2 border-l-2 border-r-2 px-3 py-2"
+          >
+            Login
+          </Link>
+          <Link
+            to={"/signup"}
+            className="text-sm text-white bg-black border border-black border-t-2 border-b-2 border-l-2 border-r-2 mx-3 font-medium px-3 py-2"
+          >
+            Sign Up
+          </Link>
+        </>
+      );
+    }
+  };
 
   const onSubmit = (data) => {
     window.location.href = `http://localhost:3000/search/${data.searchKey}`;
@@ -202,6 +235,7 @@ const Header = () => {
             </li>
           </ul>
           <div className="flex list-none items-center sm:mb-3 sm:mx-auto">
+            {renderUser()}
             <button className="mx-0 text-sm text-black  font-medium border border-black border-t-2 border-b-2 border-l-2 border-r-2 px-3 py-2 hover:bg-gray-100 duration-300">
               Login
             </button>

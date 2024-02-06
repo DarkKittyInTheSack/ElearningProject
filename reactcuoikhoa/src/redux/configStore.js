@@ -1,3 +1,4 @@
+
 import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga'
 import userHomePageSlice from './reducer/userHomePageSlice';
@@ -10,6 +11,7 @@ import coursesByCategorySaga from './middleware/coursesByCategorySaga';
 import coursesPagingSlice from './reducer/coursesPagingSlice';
 import coursesPagingSaga from './middleware/coursesPagingSaga';
 import loadingDataSlice from './reducer/loadingDataSlice';
+import userSlice from "./slice/userSlice";
 
 const middlewareSaga = createSagaMiddleware()
 
@@ -22,7 +24,8 @@ export const store = configureStore(
             coursesByIDSlice,
             coursesByCategorySlice,
             coursesPagingSlice,
-            loadingDataSlice
+            loadingDataSlice,
+            userSlice,
         },
         middleware: (getDefaultMiddleware) => [middlewareSaga,...getDefaultMiddleware()]
     }

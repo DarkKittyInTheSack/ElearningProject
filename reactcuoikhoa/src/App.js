@@ -1,3 +1,4 @@
+
 import { Routes,Route } from 'react-router-dom'
 import BasicTemplate from './templates/BasicTemplate/BasicTemplate';
 import Home from './pages/UserHomePage/Home';
@@ -16,10 +17,21 @@ import TeacherPage from './pages/TeachOn/TeacherPage';
 import AddNewCourses from './pages/AddNewCourses/AddNewCourses';
 import './assets/styles/style.scss'
 
+import SignUp from "./pages/SignUp/SignUp";
+import Login from "./pages/Login/Login";
+import CheckOut from "./pages/CheckOut/CheckOut";
+import AnnounCement from "./pages/AnnounCement/AnnounCement";
+
+import QuanLyTaiKhoanHV from "./pages/QuanLyTaiKhoanHV/QuanLyTaiKhoanHV";
+import QuanLyTaiKhoanGV from "./pages/QuanLyTaiKhoanGV/QuanLyTaiKhoanGV";
+import QuanLyKhoaHoc from "./pages/QuanLyKhoaHoc/QuanLyKhoaHoc";
+import AdminTemplate from "./templates/AdminTemplate/AdminTemplate";
+
 function App() {
   return (
     <>
       <Routes>
+
         <Route element={<BasicTemplate/>} path='/'>
           <Route element ={<Home/>} index>
             
@@ -32,6 +44,11 @@ function App() {
           <Route element={<PublicProfileView/>} path='/profile/public'/>
           <Route element={<Subcriptions/>} path='/profile/subcriptions'/>
           <Route element={<PaymentMethods/>} path='/profile/payments'/>
+            
+          <Route element={<SignUp />} path="/signup"></Route>
+          <Route element={<Login />} path="/login"></Route>
+          <Route element={<CheckOut />} path="/checkout"></Route>
+          <Route element={<AnnounCement />} path="/announcement"></Route>
         </Route>
 
         <Route element={<BusinessTemplate/>} path='/business'>
@@ -46,8 +63,12 @@ function App() {
             </Route>
             <Route element={<AddNewCourses/>} path='newCourses'/>
         </Route>
-        
 
+        <Route element={<AdminTemplate />} path="/admin">
+          <Route element={<QuanLyTaiKhoanHV />} path="qlhv" />
+          <Route element={<QuanLyTaiKhoanGV />} path="qlgv" />
+          <Route element={<QuanLyKhoaHoc />} path="qlkh" />
+        </Route>
       </Routes>
     </>
   );
