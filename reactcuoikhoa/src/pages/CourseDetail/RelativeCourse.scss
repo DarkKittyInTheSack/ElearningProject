@@ -1,0 +1,11 @@
+.ant-card-cover{
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    aspect-ratio: calc(1/.5625);
+}
+
+img{
+    object-fit: cover;
+    aspect-ratio: auto 240 / 135;
+}

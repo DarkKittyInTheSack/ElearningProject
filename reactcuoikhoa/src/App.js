@@ -11,6 +11,10 @@ import Subcriptions from './pages/ProfilePage/Subcriptions';
 import PaymentMethods from './pages/ProfilePage/PaymentMethods';
 import BusinessTemplate from './templates/BusinessTemplate/BusinessTemplate';
 import BusinessHome from './pages/BusinessHome/BusinessHome';
+import TeacherTemplate from './templates/TeacherTemplate/TeacherTemplate';
+import TeacherPage from './pages/TeachOn/TeacherPage';
+import AddNewCourses from './pages/AddNewCourses/AddNewCourses';
+import './assets/styles/style.scss'
 
 function App() {
   return (
@@ -21,9 +25,9 @@ function App() {
             
           </Route>
           <Route element={<CourseDetail/>} path='/detail/:id'/>
-          <Route element={<SearchResult/>} path='/search'/>
+          <Route element={<SearchResult/>} path='/search/:data'/>
           <Route element={<MyLearning/>} path='/learning'/>
-          <Route element={<CategoryDetail/>} path='/category'/>
+          <Route element={<CategoryDetail/>} path='/category/:id'/>
           <Route element={<Profile/>} path='/profile'/>
           <Route element={<PublicProfileView/>} path='/profile/public'/>
           <Route element={<Subcriptions/>} path='/profile/subcriptions'/>
@@ -35,6 +39,14 @@ function App() {
               
             </Route>
         </Route>
+
+        <Route element={<TeacherTemplate/>} path='/teacher'>
+            <Route element={<TeacherPage/>} index>
+              
+            </Route>
+            <Route element={<AddNewCourses/>} path='newCourses'/>
+        </Route>
+        
 
       </Routes>
     </>

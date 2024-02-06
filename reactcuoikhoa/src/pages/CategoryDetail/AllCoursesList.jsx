@@ -1,45 +1,44 @@
 import React from 'react'
-import {Rate} from 'antd'
+import {Rate, List} from 'antd'
+import { Link } from 'react-router-dom'
+import './AllCoursesList.scss'
 
-const AllCoursesList = () => {
+const AllCoursesList = ({courses}) => {
   return (
     <div className='my-3 mx-4 w-full'>
-        <ul>
-            <li className='mb-4'>
+        <List
+            itemLayout='vertical'
+            size='large'
+            pagination={{pageSize:4}}
+            dataSource={courses ? courses : null}
+            renderItem={(item) =>{
+                const {maKhoaHoc,tenKhoaHoc, nguoiTao, luotXem, hinhAnh,moTa} = item
+                return <li className='mb-4' key={maKhoaHoc}>
                 <div className="flex justify-between items-center border-b pb-4">
-                    <img src="https://img-c.udemycdn.com/course/240x135/2473048_8255_5.jpg" className='block' alt="" loading='lazy' width={'260px'} height={'145px'} />
+                        <Link to={`/detail/${maKhoaHoc}`} className='list_data_img'
+                        style={{
+                            backgroundImage: `url(${hinhAnh})`,
+                        }}>
+                            {/* <img src={hinhAnh} className='block' alt="" loading='lazy' width={'260px'} height={'145px'} /> */}
+                        </Link>
                     <div className="mx-3 font-bold text-lg w-2/3">
-                        <h2 className='mb-1'>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</h2>
-                        <span className='font-normal text-base line-clamp-2 leading-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum provident optio asperiores fugit et neque.</span>
-                        <p className='font-normal text-sm text-gray-500'>Dr lorem</p>
+                        <Link to={`/detail/${maKhoaHoc}`}>
+                            <h2 className='mb-1 hover:text-black'>{tenKhoaHoc}</h2>
+                        </Link>
+                        <span className='font-normal text-base line-clamp-2 leading-6'>{moTa}</span>
+                        <p className='font-normal text-sm text-gray-500'>{nguoiTao.hoTen}</p>
                         <div className="flex items-center">
                             <p className='font-semibold text-base text-amber-900'>4.3</p>
                             <Rate allowHalf defaultValue={4.3} className='mx-1 text-sm space-x-0.5'/>
-                            <span className='font-medium text-sm'>(1,428)</span>
+                            <span className='font-medium text-sm'>({luotXem})</span>
                         </div>
                         <p className='font-normal text-sm text-gray-500'>22 total hours &#8226; 156 lectures &#8226; All level</p>
                     </div>
                     <p className='font-bold text-lg'>đ1,960,000</p>
                 </div>
             </li>
-            <li className='mb-4'>
-                <div className="flex justify-between items-center border-b pb-4">
-                    <img src="https://img-c.udemycdn.com/course/240x135/2473048_8255_5.jpg" className='block' alt="" loading='lazy' width={'260px'} height={'145px'} />
-                    <div className="mx-3 font-bold text-lg w-2/3">
-                        <h2 className='mb-1'>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</h2>
-                        <span className='font-normal text-base line-clamp-2 leading-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum provident optio asperiores fugit et neque.</span>
-                        <p className='font-normal text-sm text-gray-500'>Dr lorem</p>
-                        <div className="flex items-center">
-                            <p className='font-semibold text-base text-amber-900'>4.3</p>
-                            <Rate allowHalf defaultValue={4.3} className='mx-1 text-sm space-x-0.5'/>
-                            <span className='font-medium text-sm'>(1,428)</span>
-                        </div>
-                        <p className='font-normal text-sm text-gray-500'>22 total hours &#8226; 156 lectures &#8226; All level</p>
-                    </div>
-                    <p className='font-bold text-lg'>đ1,960,000</p>
-                </div>
-            </li>
-        </ul>
+            }}
+        />
     </div>
   )
 }

@@ -3,7 +3,7 @@ import { Menu,Rate,Radio, Checkbox } from 'antd'
 import './AllCourses.scss'
 import AllCoursesList from './AllCoursesList'
 
-const AllCourses = () => {
+const AllCourses = ({courses}) => {
     const subMenuList = ['sub1','sub2','sub4']
     const [key,setKey] = useState(['sub1'])
     const SubMenu = Menu.SubMenu
@@ -14,8 +14,8 @@ const AllCourses = () => {
     }
 
   return (
-    <div className='my-5'>
-        <h2 className='font-bold text-2xl mt-10 mb-5'>All development courses</h2>
+    <div className='m-5'>
+        <h2 className='font-bold text-2xl mt-10 mb-5 '>All development courses</h2>
         <div className="flex my-5 items-center justify-between">
             <div className="flex font-bold text-base">
                 <button className='border border-black px-3 py-4'><i className='fa-solid fa-arrow-up-wide-short mr-2'></i>Filter</button>
@@ -34,7 +34,7 @@ const AllCourses = () => {
             <Menu mode="inline"
             openKeys={key}
             onOpenChange={onChangeData}
-            style={{ width: 350, border: 'none'}} className='my-3'>
+            style={{ width: 350, border: 'none'}} className='my-3 sm:hidden md:block'>
                 <SubMenu key="sub1" title={<span className='font-bold text-xl'>Ratings</span>} style={{borderTop: '1px solid gray', borderRadius: 0, padding: '5px 0'}}>
                     <Menu.Item key="1">
                         <Radio>
@@ -106,7 +106,7 @@ const AllCourses = () => {
                     </Menu.Item>
                 </SubMenu>
             </Menu>
-            <AllCoursesList/>
+            <AllCoursesList courses = {courses}/>
         </div>
     </div>
   )

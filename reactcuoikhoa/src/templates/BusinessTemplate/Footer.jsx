@@ -7,66 +7,66 @@ const Footer = () => {
         <footer className='bg-black text-white'>
       
         <div className="flex p-5 justify-between">
-            <div className='flex justify-between px-5 py-2 w-6/12'>
+          <div className='flex justify-between px-5 py-2 w-6/12'>
             <ul className='space-y-2 items-center font-medium text-sm'>
-                <li>
-                <Link>Udemy Business</Link>
-                </li>
-                <li>
-                <Link>Teach on Udemy</Link>
-                </li>
-                <li>
-                <Link>Get the app</Link>
-                </li>
-                <li>
-                <Link>About Us</Link>
-                </li>
-                <li>
-                <Link>Contact Us</Link>
-                </li>
+              <li>
+                <Link to={'/business'} className='hover:underline duration-500'>Udemy Business</Link>
+              </li>
+              <li>
+                <Link to={'/teacher'} className='hover:underline duration-500'>Teach on Udemy</Link>
+              </li>
+              <li>
+                <Link to={'https://www.udemy.com/mobile/'} className='hover:underline duration-500'>Get the app</Link>
+              </li>
+              <li>
+                <Link to={''} className='hover:underline duration-500'>About Us</Link>
+              </li>
+              <li>
+                <Link className='hover:underline duration-500'>Contact Us</Link>
+              </li>
             </ul>
             <ul className='space-y-2 items-center font-medium text-sm'>
-                <li>
-                <Link>Careers</Link>
-                </li>
-                <li>
-                <Link>Blogs</Link>
-                </li>
-                <li>
-                <Link>Help and Support</Link>
-                </li>
-                <li>
-                <Link>Affiliate</Link>
-                </li>
-                <li>
-                <Link>Investors</Link>
-                </li>
+              <li>
+                <Link to={'/profile'} className='hover:underline duration-500'>Careers</Link>
+              </li>
+              <li>
+                <Link className='hover:underline duration-500'>Blogs</Link>
+              </li>
+              <li>
+                <Link className='hover:underline duration-500'>Help and Support</Link>
+              </li>
+              <li>
+                <Link className='hover:underline duration-500'>Affiliate</Link>
+              </li>
+              <li>
+                <Link className='hover:underline duration-500'>Investors</Link>
+              </li>
             </ul>
             <ul className='space-y-2 items-center font-medium text-sm'>
-                <li>
-                <Link>Terms</Link>
-                </li>
-                <li>
-                <Link>Privacy policy</Link>
-                </li>
-                <li>
-                <Link>Cookie settings</Link>
-                </li>
-                <li>
-                <Link>Sitemap</Link>
-                </li>
-                <li>
-                <Link>Accessibility statement</Link>
-                </li>
+              <li>
+                <Link className='hover:underline duration-500'>Terms</Link>
+              </li>
+              <li>
+                <Link className='hover:underline duration-500'>Privacy policy</Link>
+              </li>
+              <li>
+                <Link className='hover:underline duration-500'>Cookie settings</Link>
+              </li>
+              <li>
+                <Link className='hover:underline duration-500'>Sitemap</Link>
+              </li>
+              <li>
+                <Link className='hover:underline duration-500'>Accessibility statement</Link>
+              </li>
             </ul>
-            </div>
-            <div className="px-5 py-2">
-            <button className='inline-block pl-4 pr-9 py-2 border border-white w-full'>
-                <i className='fa-solid fa-globe pr-1'></i>
-                English
-            </button>
-            </div>
         </div>
+        <div className="px-5 py-2">
+          <button className='inline-block pl-4 pr-9 py-2 border border-white w-full'>
+            <i className='fa-solid fa-globe pr-1'></i>
+            English
+          </button>
+        </div>
+      </div>
       <div className="flex justify-between items-center mb-3">
         <div className="p-5">
           <Link to={'/business'} className='px-5 py-3 w-20 outline-none'>

@@ -14,22 +14,22 @@ const Header = () => {
 
             <ul className='ms-8 flex list-none items-center w-2/3'>
                 <li>
-                    <button className='text-base text-slate-700 mx-3 py-3 font-medium'>What we do</button>
+                    <button className='text-base text-slate-700 mx-3 py-3 font-medium hover:text-purple-500 duration-500'>What we do</button>
                 </li>
                 <li>
-                    <button className='text-base text-slate-700 mx-3 py-3 font-medium'>How we do it</button>
+                    <button className='text-base text-slate-700 mx-3 py-3 font-medium hover:text-purple-500 duration-500'>How we do it</button>
                 </li>
                 <li>
-                    <button className='text-base text-slate-700 mx-3 py-3 font-medium'>Resources</button>
+                    <button className='text-base text-slate-700 mx-3 py-3 font-medium hover:text-purple-500 duration-500'>Resources</button>
                 </li>
                 <li>
-                    <button className='text-base text-slate-700 mx-3 py-3 font-medium'>Plans</button>
+                    <button className='text-base text-slate-700 mx-3 py-3 font-medium hover:text-purple-500 duration-500'>Plans</button>
                 </li>
             </ul>
 
             <div className='flex list-none items-center'>
-                    <button className='mx-0 text-sm text-black  font-medium  px-3 py-2'>Login</button>
-                    <button className='text-sm text-white bg-black border border-black border-t-2 border-b-2 border-l-2 border-r-2 mx-3 font-medium px-3 py-2'>Get Started</button>
+                    <button className='mx-0 text-sm text-black border-2 border-white font-medium  px-3 py-2 hover:text-white hover:bg-black duration-500'>Login</button>
+                    <button className='text-sm text-white bg-black border-black border-2 mx-3 font-medium px-3 py-2 hover:text-black hover:bg-white hover:border-black duration-500'>Get Started</button>
             </div>
         </nav>
     </header>
