@@ -2,6 +2,17 @@
     display: flex !important;
     margin-right: 1.5rem !important;
     width: auto !important;
+    
+    // @media (min-width: 768px) {
+    //     display: flex !important;
+    //     margin-right: 1.5rem !important;
+    //     width: auto !important;
+    // }
+
+    // @media (min-width:640px){
+    //     display: grid !important;
+    //     grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+    // }
 }
 
 .course_image{

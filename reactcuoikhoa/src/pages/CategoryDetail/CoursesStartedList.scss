@@ -1,0 +1,24 @@
+.ant-card{
+    padding: 0 10px !important;
+    overflow: hidden !important;
+}
+
+.ant-card-body{
+    padding: 15px 0 !important;
+}
+
+.course_image{
+    filter: brightness(70%);
+}
+
+.slick-slider .slick-prev{
+    &::before{
+        content: '';
+    }
+}
+
+.slick-slider .slick-next{
+    &::before{
+        content: '';
+    }
+}

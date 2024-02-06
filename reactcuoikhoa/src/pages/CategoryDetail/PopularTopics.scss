@@ -1,0 +1,11 @@
+.slick-slider .slick-prev{
+    &::before{
+        content: '';
+    }
+}
+
+.slick-slider .slick-next{
+    &::before{
+        content: '';
+    }
+}

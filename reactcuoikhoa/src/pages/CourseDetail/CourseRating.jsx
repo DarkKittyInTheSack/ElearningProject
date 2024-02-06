@@ -2,7 +2,7 @@ import React from 'react'
 
 const CourseRating = () => {
   return (
-    <div className='w-4/6'>
+    <div className='md:w-4/6 sm:w-full'>
         <h2 className='font-bold text-2xl my-5'><i className='fa-solid fa-star text-yellow-800 mr-3'></i>4.3 course ratting &#8226; 1K ratings</h2>
         <div className="grid grid-cols-2 gap-5 items-center mb-5">
             <ul>
