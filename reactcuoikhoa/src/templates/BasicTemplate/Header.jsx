@@ -1,4 +1,3 @@
-
 import { useSignalEffect, useSignals } from "@preact/signals-react/runtime";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
@@ -9,9 +8,7 @@ import "./header.scss";
 import { CoursesService } from "../../services/CoursesService";
 
 const Header = () => {
-  
   const isResponsive = useSignals(false);
-  const isMouseIn = useSignals(false);
   const { category } = useSelector((state) => state.coursesCategorySlice);
   const dispatch = useDispatch();
 
@@ -20,33 +17,49 @@ const Header = () => {
   const [searchData, setSearchData] = useState({});
   const [keyData, setKeyData] = useState("");
   const [pageData, setPageData] = useState(0);
-  
+
   const { user } = useSelector((state) => state.userSlice);
   const renderUser = () => {
     if (user) {
       return (
         <>
-          <h1 className="text-3xl text-black">{user.hoTen}</h1>
-          <h1 className="text-3xl text-black">xóa</h1>
-          {/* kieu */}
-          {/* button xu lý */}
+          <div className="flex justify-start list-none items-center sm:mb-3 mx-auto">
+            <Link
+              to={`/profile/${user.taiKhoan}`}
+              className="uppercase mx-2 text-sm text-white bg-black font-medium border border-black rounded-full leading-4 px-3 py-2 hover:bg-gray-100 hover:text-black duration-300"
+            >
+              {user.taiKhoan.split("").slice(0, 1)}
+            </Link>
+
+            <button className="mx-0 text-sm text-center border border-black border-t-2 border-b-2 border-l-2 border-r-2 font-medium px-3 py-2 hover:bg-gray-100 duration-300">
+              <i className="fa-solid fa-globe"></i>
+            </button>
+          </div>
+          
         </>
       );
     } else {
       return (
         <>
-          <Link
-            to={"/login"}
-            className="mx-0 text-sm text-black  font-medium border border-black border-t-2 border-b-2 border-l-2 border-r-2 px-3 py-2"
-          >
-            Login
-          </Link>
-          <Link
-            to={"/signup"}
-            className="text-sm text-white bg-black border border-black border-t-2 border-b-2 border-l-2 border-r-2 mx-3 font-medium px-3 py-2"
-          >
-            Sign Up
-          </Link>
+          <div className="flex justify-start list-none items-center sm:mb-3 mx-auto">
+            <Link
+              to={"/login"}
+              className="mx-0 text-sm text-black  font-medium border border-black border-t-2 border-b-2 border-l-2 border-r-2 px-3 py-2 hover:bg-gray-100 duration-300"
+            >
+              Login
+            </Link>
+            <Link
+              to={"/signup"}
+              className="text-sm text-white bg-black border border-black border-t-2 border-b-2 border-l-2 border-r-2 mx-3 font-medium px-3 py-2 hover:text-gray-100 duration-300"
+            >
+              Sign Up
+            </Link>
+
+            <button className="mx-0 text-sm text-center border border-black border-t-2 border-b-2 border-l-2 border-r-2 font-medium px-3 py-2 hover:bg-gray-100 duration-300">
+              <i className="fa-solid fa-globe"></i>
+            </button>
+          </div>
+          
         </>
       );
     }
@@ -234,24 +247,8 @@ const Header = () => {
               </ul>
             </li>
           </ul>
-          <div className="flex list-none items-center sm:mb-3 sm:mx-auto">
-            {renderUser()}
-            <button className="mx-0 text-sm text-black  font-medium border border-black border-t-2 border-b-2 border-l-2 border-r-2 px-3 py-2 hover:bg-gray-100 duration-300">
-              Login
-            </button>
-            <button className="text-sm text-white bg-black border border-black border-t-2 border-b-2 border-l-2 border-r-2 mx-3 font-medium px-3 py-2 hover:text-gray-100 duration-300">
-              Sign Up
-            </button>
-            <button className="mx-0 text-sm text-center border border-black border-t-2 border-b-2 border-l-2 border-r-2 font-medium px-3 py-2 hover:bg-gray-100 duration-300">
-              <i className="fa-solid fa-globe"></i>
-            </button>
-          </div>
-          {/* <div className="flex list-none items-center sm:mb-3">
-            <Link to={'/profile'} className="mx-0 text-sm text-white bg-black font-medium border border-black rounded-full leading-4 px-3 py-2 hover:bg-gray-100 hover:text-black duration-300">
-              U
-            </Link>
-            <span className="ms-2 font-medium text-base line-clamp-1">Username</span>
-          </div> */}
+          {renderUser()}
+          
         </div>
       </nav>
       <nav className="py-2 sm:hidden md:block">

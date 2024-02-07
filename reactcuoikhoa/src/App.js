@@ -40,7 +40,7 @@ function App() {
           <Route element={<SearchResult/>} path='/search/:data'/>
           <Route element={<MyLearning/>} path='/learning'/>
           <Route element={<CategoryDetail/>} path='/category/:id'/>
-          <Route element={<Profile/>} path='/profile'/>
+          <Route element={<Profile/>} path='/profile/:id'/>
           <Route element={<PublicProfileView/>} path='/profile/public'/>
           <Route element={<Subcriptions/>} path='/profile/subcriptions'/>
           <Route element={<PaymentMethods/>} path='/profile/payments'/>

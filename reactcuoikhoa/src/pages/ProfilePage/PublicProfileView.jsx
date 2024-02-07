@@ -1,15 +1,17 @@
 import React from 'react'
 import { Carousel,Card,Rate } from 'antd'
+import { getLocalStore } from "../../utils/local";
 
 const PublicProfileView = () => {
+    const user = getLocalStore("user_info");
   return (
     <div className='bg-slate-700'>
         <div className="font-sans font-serif font-bold text-5xl container mx-auto">
-            <p className='text-white py-10'>Username</p>
+            <p className='text-white py-10'>{user.hoTen}</p>
         </div>
         <div className="bg-white">
             <div className="font-bold text-5xl container mx-auto">
-                <p className='text-white px-8 py-10 bg-black inline-block my-5 rounded-full'>US</p>
+                <p className='text-white px-8 py-7 bg-black inline-block my-5 rounded-full uppercase'>{user.taiKhoan.split('').slice(0,1)[0]}</p>
             </div>
         </div>
         <div className="bg-gray-100 py-5">

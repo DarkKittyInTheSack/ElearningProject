@@ -3,26 +3,42 @@ import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <footer className='bg-black text-white'>
-    <div className="flex px-5 py-4 justify-between items-center border-b border-b-gray-600">
-      <h2 className='px-5  font-bold text-xl'>Top companies choose <span className='text-purple-300'>Udemy Business</span> to build in-demand career skills</h2>
-      <ul className='flex space-x-4 items-center px-5'>
-        <li>
-          <img src="https://s.udemycdn.com/partner-logos/v4/volkswagen-light.svg" alt="#" />
-        </li>
-        <li>
-          <img src="https://s.udemycdn.com/partner-logos/v4/box-light.svg" alt="#" />
-        </li>
-        <li>
-          <img src="https://s.udemycdn.com/partner-logos/v4/netapp-light.svg" alt="#" />
-        </li>
-        <li>
-          <img src="https://s.udemycdn.com/partner-logos/v4/eventbrite-light.svg" alt="#" />
-        </li>
-      </ul>
-    </div>
-    <div className="flex p-5 justify-between">
-        <div className="flex justify-between px-5 py-2 w-6/12">
+    <footer className="bg-black text-white">
+      <div className="md:flex px-5 py-4 justify-between md:items-center border-b border-b-gray-600 ">
+        <h2 className="px-5  font-bold text-xl">
+          Top companies choose{" "}
+          <span className="text-purple-300">Udemy Business</span> to build
+          in-demand career skills
+        </h2>
+        <ul className="md:flex md:space-y-0 space-x-4 items-center px-5 sm:grid sm:grid-cols-4 sm:space-y-2">
+          <li>
+            <img
+              src="https://s.udemycdn.com/partner-logos/v4/volkswagen-light.svg"
+              alt="#"
+            />
+          </li>
+          <li>
+            <img
+              src="https://s.udemycdn.com/partner-logos/v4/box-light.svg"
+              alt="#"
+            />
+          </li>
+          <li>
+            <img
+              src="https://s.udemycdn.com/partner-logos/v4/netapp-light.svg"
+              alt="#"
+            />
+          </li>
+          <li>
+            <img
+              src="https://s.udemycdn.com/partner-logos/v4/eventbrite-light.svg"
+              alt="#"
+            />
+          </li>
+        </ul>
+      </div>
+      <div className="md:flex p-5 md:justify-between sm:grid sm:grid-cols-1">
+        <div className="md:flex md:justify-between px-5 py-2 md:w-6/12 sm:grid sm:grid-cols-3 sm:w-full">
           <ul className="space-y-2 items-center font-medium text-sm">
             <li>
               <Link to={"/business"} className="hover:underline duration-500">
@@ -102,18 +118,21 @@ const Footer = () => {
             English
           </button>
         </div>
-    </div>
-    <div className="flex justify-between items-center mb-3">
-      <div className="p-5">
-        <Link to={'/teacher'} className='px-5 py-3 w-20 outline-none'>
-          <img src="https://www.udemy.com/staticx/udemy/images/v7/logo-udemy-inverted.svg" className='w-24 inline-block' />
-        </Link>
       </div>
-      <div className="p-5">
-        <p className='font-medium text-sm px-5'>&#169; 2024 Udemy, Inc</p>
+      <div className="flex justify-between items-center mb-3">
+        <div className="p-5">
+          <Link to={"/"} className="px-5 py-3 w-20 outline-none">
+            <img
+              src="https://www.udemy.com/staticx/udemy/images/v7/logo-udemy-inverted.svg"
+              className="w-24 inline-block"
+            />
+          </Link>
+        </div>
+        <div className="p-5">
+          <p className="font-medium text-sm px-5">&#169; 2024 Udemy, Inc</p>
+        </div>
       </div>
-    </div>
-  </footer>
+    </footer>
   )
 }
 

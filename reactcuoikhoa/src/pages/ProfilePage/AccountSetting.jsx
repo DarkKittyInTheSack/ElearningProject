@@ -1,7 +1,7 @@
 import React from 'react'
 import {Card, Input} from 'antd'
 
-const AccountSetting = () => {
+const AccountSetting = ({email}) => {
   return (
     <div>
         <Card title = {
@@ -16,7 +16,7 @@ const AccountSetting = () => {
             </li>
             <li className='py-3 border-b'>
                 <div className="p-3 border border-black font-normal w-2/3 mx-auto">
-                    <p>Your email address is <span className='font-bold'>username@gmail.com</span></p>
+                    <p>Your email address is <span className='font-bold'>{email}</span></p>
                 </div>
             </li>
             <li className='py-3 border-b'>
