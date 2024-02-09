@@ -2,7 +2,7 @@ import axios from "axios";
 import { https } from "./configService";
 import { getLocalStore } from "../utils/local";
 
-const dataUser = getLocalStore("user_info");
+const dataUser = getLocalStore("user_info")
 export const UserService = {
   userLogin: (data) => {
     return https.post("/api/QuanLyNguoiDung/DangNhap", data);
