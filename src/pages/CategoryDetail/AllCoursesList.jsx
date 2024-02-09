@@ -19,7 +19,6 @@ const AllCoursesList = ({courses}) => {
                         style={{
                             backgroundImage: `url(${hinhAnh})`,
                         }}>
-                            {/* <img src={hinhAnh} className='block' alt="" loading='lazy' width={'260px'} height={'145px'} /> */}
                         </Link>
                     <div className="mx-3 font-bold text-lg w-2/3">
                         <Link to={`/detail/${maKhoaHoc}`}>

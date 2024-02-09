@@ -1,16 +1,35 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { Menu,Rate,Radio, Checkbox } from 'antd'
 import './AllCourses.scss'
 import AllCoursesList from './AllCoursesList'
+import { useSignalEffect } from '@preact/signals-react/runtime'
 
 const AllCourses = ({courses}) => {
     const subMenuList = ['sub1','sub2','sub4']
     const [key,setKey] = useState(['sub1'])
+    const [filterCoursesList,setFilterCoursesList] = useState(courses)
     const SubMenu = Menu.SubMenu
     const onChangeData = (keys) =>{
         const latest = key.find(item => key.indexOf(item) === -1)
         subMenuList.indexOf(latest) === -1 ?
         setKey(keys) : (setKey(latest ? [latest] : []))
+    }
+
+    const onFilterData = (key,courseList)=>{
+        switch(key){
+            case 'highest':
+                {
+                    setFilterCoursesList([...courseList].sort((a,b) => {return b.luotXem - a.luotXem}))
+                    break
+                }
+            case 'date':
+                {
+                    setFilterCoursesList([...courseList].sort((a,b) =>{return new Date(a.ngayTao).getTime() - new Date(b.ngayTao).getTime()}))
+                    break
+                }
+            default: 
+                    setFilterCoursesList(courseList)
+        }
     }
 
   return (
@@ -21,10 +40,12 @@ const AllCourses = ({courses}) => {
                 <button className='border border-black px-3 py-4'><i className='fa-solid fa-arrow-up-wide-short mr-2'></i>Filter</button>
                 <div className="mx-3 border border-black p-2">
                     <p className='my-1'>Sort by</p>
-                    <select name="" id="" className='font-normal text-base outline-none'>
-                        <option value="#">Highest view</option>
-                        <option value="#">Most relevant</option>
-                        <option value="#">Most rating</option>
+                    <select name="" id="" onChange={(data) => {
+                        onFilterData(data.target.value,courses)
+                    }} className='font-normal text-base outline-none'>
+                        <option value="basic">Basic</option>
+                        <option value="highest">Highest view</option>
+                        <option value="date">Date created</option>
                     </select>
                 </div>
             </div>
@@ -106,7 +127,10 @@ const AllCourses = ({courses}) => {
                     </Menu.Item>
                 </SubMenu>
             </Menu>
-            <AllCoursesList courses = {courses}/>
+            {
+                filterCoursesList.length > 0 ? (<AllCoursesList courses = {filterCoursesList}/>) : (<AllCoursesList courses = {courses}/>)
+            }
+            
         </div>
     </div>
   )

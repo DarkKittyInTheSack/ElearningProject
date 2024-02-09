@@ -4,6 +4,7 @@ import './MyLearning.scss'
 import AllCourses from './AllCourses';
 import EmptyMyLearning from '../../components/EmptyMyLearning';
 import LearningReminder from './LearningReminder';
+import UnsubscribeCourses from './UnsubscribeCourses';
 
 const MyLearning = () => {
     const items = [
@@ -32,6 +33,11 @@ const MyLearning = () => {
             label: <p className='font-bold text-base px-2 py-1'>Learning Tools</p>,
             children: <LearningReminder/>,
         },
+        {
+          key: '6',
+          label: <p className='font-bold text-base px-2 py-1'>Unsubscribe</p>,
+          children: <UnsubscribeCourses/>,
+      },
     ];
 
   return (

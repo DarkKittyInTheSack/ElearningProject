@@ -7,12 +7,15 @@ import {useLocation} from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
 import { getDataToFetch } from '../../redux/reducer/coursesByCategorySlice'
 import { useSignalEffect } from '@preact/signals-react/runtime'
+import { useRecoilValue } from 'recoil'
+import { fetchCategoryRecoil } from '../../redux/recoil/categoryRecoil'
 
 const CategoryDetail = () => {
   const location = useLocation().pathname.split('/')[2]
   let data = {}
   const {coursesByCategory} = useSelector((state) => state.coursesByCategorySlice)
-  const {category} = useSelector((state) => state.coursesCategorySlice)
+  // const {category} = useSelector((state) => state.coursesCategorySlice)
+  const category = useRecoilValue(fetchCategoryRecoil)
   const dispatch = useDispatch()
 
   useSignalEffect(() =>{

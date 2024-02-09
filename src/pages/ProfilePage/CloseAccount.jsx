@@ -29,7 +29,6 @@ const CloseAccount = () => {
                           });
                     }).catch((err) => {
                         message.error(err.response.data);
-                        console.log(err);
                     });
                 }} className=' bg-black py-3 px-4 text-lg text-white my-3'>Close Account</button>
             </li>

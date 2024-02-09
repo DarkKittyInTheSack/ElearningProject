@@ -3,6 +3,7 @@ import { Carousel } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import "./StartLearning.scss";
 import { Link } from "react-router-dom";
+import { getLocalStore } from "../../utils/local";
 
 const SampleNextArrow = (props) => {
   const { className, style, onClick } = props;
@@ -131,10 +132,15 @@ const StartLearning = ({ courses }) => {
     ],
   };
 
+  const user = getLocalStore('user_info')
+
   return (
     <div className="my-10">
       <h2 className="font-bold font-serif md:text-4xl sm:text-2xl mb-8 px-5">
-        Let's start learning, Username
+        {
+          user ? `Let's start learning, ${user.taiKhoan}`: `Start your Journey`
+        }
+        
       </h2>
       <Carousel {...setting} className="my-3 w-full space-x-4">
         <div className="md:flex md:justify-between items-center px-2 py-4 border start_learning_data sm:hidden">

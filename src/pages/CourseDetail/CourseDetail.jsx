@@ -12,10 +12,13 @@ import CourseRating from "./CourseRating";
 import RelativeCourse from "./RelativeCourse";
 import CourseRightColumn from "./CourseRightColumn";
 import { getDataThunk } from "../../redux/reducer/coursesByIDSlice";
+import { useRecoilState } from "recoil";
+import { coursesRecoilInit } from "../../redux/recoil/coursesRecoil";
 
 const CourseDetail = () => {
   const location = useLocation().pathname.split("/")[2];
   const { courses } = useSelector((state) => state.coursesByIDSlice);
+  const [_,setCoursesRecoil] = useRecoilState(coursesRecoilInit)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -49,11 +52,14 @@ const CourseDetail = () => {
 
   return (
     <div>
+      {
+        courses ? (setCoursesRecoil(() => courses)) : <div></div>
+      }
       <div className="bg-slate-800">
         <div className="container mx-auto ">
           <CourseOveral courses={courses} />
           <div className="w-1/4 fixed top-36 right-32" id="fixedScroll">
-            <CourseRightColumn image={courses.hinhAnh} />
+            <CourseRightColumn image={courses.hinhAnh} code = {courses.maKhoaHoc}/>
           </div>
         </div>
       </div>

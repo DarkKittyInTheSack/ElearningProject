@@ -3,11 +3,6 @@ import { Rate } from "antd";
 import { Link } from "react-router-dom";
 
 const CourseOveral = ({ courses }) => {
-  // const courses = useRecoilValue(coursesRecoil)
-
-  // useEffect(() =>{
-
-  // },[])
 
   return (
     <div className="mx-5 p-5 text-white relative">

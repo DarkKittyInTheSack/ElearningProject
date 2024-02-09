@@ -140,13 +140,13 @@ const PopularTopics = ({category}) => {
             const { maDanhMuc, tenDanhMuc } = item;
             return (
               <div className="px-1" key={maDanhMuc}>
-                <Link
-                  to={`/category/${maDanhMuc}`}
+                <a
+                  href={`/category/${maDanhMuc}`}
                   className="px-2 py-3 font-bold text-base border block border-black mb-1 w-full text-center hover:bg-gray-100 hover:text-black duration-500"
                   key={maDanhMuc}
                 >
                   {tenDanhMuc}
-                </Link>
+                </a>
               </div>
             );
           })}

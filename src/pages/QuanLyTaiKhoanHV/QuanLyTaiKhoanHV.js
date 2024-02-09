@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Table } from "antd";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllUser } from "../../redux/reducer/userDataSlice";
+import { UserService } from "../../services/UserService";
+
 const columns = [
     {
       title: "Tài khoản",
@@ -20,8 +24,8 @@ const columns = [
     },
     {
       title: "Số điện thoại",
-      dataIndex: "soDT",
-      key: "soDT",
+      dataIndex: "soDt",
+      key: "soDt",
     },
     {
       title: "Hành động",
@@ -29,20 +33,20 @@ const columns = [
       render: (_, record) => (
         <div className="space-x-3">
           <button
-            // onClick={() =>{
-            //   quanLyNguoiDung.deleteUser(String(record.taiKhoan))
-            //   .then((result) => {
-            //     console.log(result)
-            //   }).catch((err) => {
-            //     console.log(err)
-            //   });
-            // }}
+            type="button"
+            onClick={() => {
+              UserService.deleteUser(record.taiKhoan)
+              .then((result) => {
+
+              }).catch((err) => {
+
+              });
+            }}
             className="text-white bg-red-600 py-2 px-4 rounded-md"
           >
             Xóa
           </button>
-          <Link
-            // to={`/admin/${record.taiKhoan}`}
+          <Link to={`/admin/updateStudent/${record.taiKhoan}`}
             className="text-white bg-yellow-600 py-2 px-4 rounded-md"
           >
             Sửa
@@ -52,49 +56,58 @@ const columns = [
     },
   ],
   QuanLyTaiKhoanHV = () => {
+    const dispatch = useDispatch();
+    const { userList } = useSelector((state) => state.userDataSlice);
+    const [userListFilter, setUserlistFilter] = useState([]);
+
+    useEffect(() => {
+      dispatch(getAllUser());
+      setUserlistFilter(
+        userList.filter((data) => data.maLoaiNguoiDung === "HV")
+      );
+    }, []);
+
     return (
       <div>
         <h2 className="font-bold text-2xl">Quản lý tài khoản Học Viên</h2>
-        <div>
+        <div className="flex items-center justify-between">
           <input
             type="text"
-            id="moTa"
-            name="moTa"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 my-3"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-10/12  p-2 my-3"
             placeholder="Nhập tài khoản bạn muốn tìm kiếm"
-            // onChange={(event) => {
-            //   const searchKey = event.target.value.trim();
-            //   searchListData = [];
-            //   searchKey === ""
-            //     ? (searchListData = displayData)
-            //     : quanLyNguoiDung
-            //         .timNguoiDung(searchKey)
-            //         .then((result) => {
-            //           result.data.content.map((item) => {
-            //             const { maLoaiNguoiDung, taiKhoan } = item;
-            //             if (
-            //               maLoaiNguoiDung === "KhachHang" &&
-            //               taiKhoan.toLowerCase().includes(searchKey.toLowerCase())
-            //             ) {
-            //               searchListData.push(item);
-            //             }
-            //           });
-            //           setListUser(searchListData);
-            //         })
-            //         .catch((err) => {
-            //           console.log(err);
-            //         });
-            // }}
+            onChange={(event) =>{
+              setUserlistFilter(
+                userList.filter((data) => data.maLoaiNguoiDung === "HV" && data.taiKhoan.includes(event.target.value) )
+              )
+            }}
           />
+
+          <Link
+            to={"/admin/updateStudent"}
+            className="px-3 py-2 bg-black rounded text-white font-bold"
+          >
+            Thêm học viên
+          </Link>
         </div>
-        <Table
-          columns={columns}
-          // dataSource={listUser}
-          pagination={{
-            pageSize: 6,
-            // current: 3,
-          }}
-        />
+        {userListFilter.length > 0 ? (
+          <Table
+            columns={columns}
+            dataSource={userListFilter}
+            pagination={{
+              pageSize: 10,
+            }}
+          />
+        ) : (
+          <Table
+            columns={columns}
+            dataSource={userList.filter(
+              (data) => data.maLoaiNguoiDung === "HV"
+            )}
+            pagination={{
+              pageSize: 10,
+            }}
+          />
+        )}
       </div>
     );
   };

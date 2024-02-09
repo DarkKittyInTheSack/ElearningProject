@@ -2,16 +2,18 @@ import React from 'react'
 
 const AllCourses = () => {
   return (
-    <div className='bg-white w-full'>
+    <div className='bg-white w-full '>
         <div className="container mx-auto my-4">
-            <div className="w-full flex space-x-5 p-5 border">
+            <div className="w-full flex space-x-5 p-5 border my_learning_reminder">
                 <i className='fa-solid fa-clock text-3xl'></i>
                 <div className="mx-2 font-bold text-lg">
                     <p className='leading-5'>Schedule learning time</p>
                     <span className='font-normal text-base block mb-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe aut beatae quae veniam libero officia delectus nobis adipisci! Reprehenderit, fugit?</span>
                     <div className="flex space-x-3">
                         <button className='bg-black text-white text-base p-2'>Get started</button>
-                        <button className='p-2 text-base'>Dismiss</button>
+                        <button type='button' onClick={() =>{
+                            document.querySelector('.my_learning_reminder').style.display = 'none'
+                        }} className='p-2 text-base'>Dismiss</button>
                     </div>
                 </div>
             </div>

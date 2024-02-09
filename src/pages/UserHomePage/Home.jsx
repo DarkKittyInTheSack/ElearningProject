@@ -9,14 +9,14 @@ import { fetchCourses } from '../../redux/reducer/userHomePageSlice'
 import { fetchCoursesCategory } from '../../redux/reducer/coursesCategorySlice'
 import { useRecoilState} from 'recoil'
 
-import { coursesListRecoil } from '../../redux/recoil/coursesListRecoil'
 import { endedLoading, startedLoading } from '../../redux/reducer/loadingDataSlice'
+import { categoryRecoil } from '../../redux/recoil/categoryRecoil'
 
 const Home = () => {
   const dispatch = useDispatch()
   const {courses} = useSelector((state) => state.userHomePageSlice)
   const {category} = useSelector((state) => state.coursesCategorySlice)
-  const [_,setCoursesList] = useRecoilState(coursesListRecoil)
+  const [_,setCategoryList] = useRecoilState(categoryRecoil)
 
   useEffect(() =>{
     dispatch(startedLoading())
@@ -46,7 +46,7 @@ const Home = () => {
   return (
     <div className='container mx-auto'>
       {
-        courses ? (setCoursesList(() => courses)) : (setCoursesList(() => courses))
+        category ? (setCategoryList(() => category)) : (setCategoryList(() => category))
       }
         <Banner/>
         <StartLearning courses={getRandomData(0,7)}/>

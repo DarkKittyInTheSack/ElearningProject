@@ -26,6 +26,11 @@ import QuanLyTaiKhoanHV from "./pages/QuanLyTaiKhoanHV/QuanLyTaiKhoanHV";
 import QuanLyTaiKhoanGV from "./pages/QuanLyTaiKhoanGV/QuanLyTaiKhoanGV";
 import QuanLyKhoaHoc from "./pages/QuanLyKhoaHoc/QuanLyKhoaHoc";
 import AdminTemplate from "./templates/AdminTemplate/AdminTemplate";
+import AdminAddCourses from './pages/QuanLyKhoaHoc/AdminAddCourses';
+import AdminAddNewStudent from './pages/QuanLyTaiKhoanHV/AdminAddNewStudent';
+import AdminAddNewTeacher from './pages/QuanLyTaiKhoanGV/AdminAddNewTeacher';
+import UpdateCurrentStudent from './pages/QuanLyTaiKhoanHV/UpdateCurrentStudent';
+import UpdateCurrentTeacher from './pages/QuanLyTaiKhoanGV/UpdateCurrentTeacher';
 
 function App() {
   return (
@@ -68,6 +73,11 @@ function App() {
           <Route element={<QuanLyTaiKhoanHV />} path="qlhv" />
           <Route element={<QuanLyTaiKhoanGV />} path="qlgv" />
           <Route element={<QuanLyKhoaHoc />} path="qlkh" />
+          <Route element={<AdminAddCourses />} path="addCourses" />
+          <Route element={<AdminAddNewStudent/>} path="addNewStudent" />
+          <Route element={<AdminAddNewTeacher/>} path="addNewTeacher" />
+          <Route element={<UpdateCurrentStudent/>} path="updateStudent/:id" />
+          <Route element={<UpdateCurrentTeacher/>} path="updateTeacher/:id" />
         </Route>
       </Routes>
     </>

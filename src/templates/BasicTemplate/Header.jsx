@@ -6,6 +6,7 @@ import { fetchCoursesCategory } from "../../redux/reducer/coursesCategorySlice";
 import { useForm } from "react-hook-form";
 import "./header.scss";
 import { CoursesService } from "../../services/CoursesService";
+import { removeFromLocalStorage } from "../../utils/local";
 
 const Header = () => {
   const isResponsive = useSignals(false);
@@ -31,8 +32,14 @@ const Header = () => {
               {user.taiKhoan.split("").slice(0, 1)}
             </Link>
 
-            <button className="mx-0 text-sm text-center border border-black border-t-2 border-b-2 border-l-2 border-r-2 font-medium px-3 py-2 hover:bg-gray-100 duration-300">
-              <i className="fa-solid fa-globe"></i>
+            <button type="button" onClick={() =>{
+              removeFromLocalStorage('user_info')
+              removeFromLocalStorage('password')
+
+              window.location.href = 'http://localhost:3000/'
+              
+            }} className="mx-0 text-sm text-center border border-black border-t-2 border-b-2 border-l-2 border-r-2 font-medium px-3 py-2 hover:bg-gray-100 duration-300">
+              <i className="fa-solid fa-arrow-right-from-bracket"></i>
             </button>
           </div>
           
@@ -75,7 +82,7 @@ const Header = () => {
         setSearchData(result.data.items);
       })
       .catch((err) => {
-        console.log(err);
+
       });
   };
 

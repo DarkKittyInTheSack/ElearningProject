@@ -155,7 +155,10 @@ const CoursesStartedList = ({courses}) => {
                     <span className='font-bold text-base'>₫279,000</span>
                     <span className='font-medium text-base line-through text-gray-500'>₫1,799,000</span>
                 </div>
-                <span className='py-1 px-2 bg-yellow-200 font-bold text-sm my-2 inline-block'>Bestseller</span>
+                {
+                  luotXem > 100 ? (<span className='py-1 px-2 bg-yellow-200 font-bold text-sm my-2 inline-block'>Bestseller</span>) : <p></p>
+                }
+                
             </Card>
               })
             ) : null

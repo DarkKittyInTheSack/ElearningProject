@@ -25,7 +25,7 @@ const Profile = () => {
           </span>
         </div>
       ),
-      key: 1,
+      key: '1',
       children: "",
     },
     {
@@ -37,7 +37,7 @@ const Profile = () => {
           View public profile
         </Link>
       ),
-      key: 2,
+      key: '2',
       children: "",
     },
     {
@@ -46,7 +46,7 @@ const Profile = () => {
           Profile
         </p>
       ),
-      key: 3,
+      key: '3',
       children: <PublicProfile />,
     },
     {
@@ -55,7 +55,7 @@ const Profile = () => {
           Photo
         </p>
       ),
-      key: 4,
+      key: '4',
       children: <Photo />,
     },
     {
@@ -64,7 +64,7 @@ const Profile = () => {
           Account Security
         </p>
       ),
-      key: 5,
+      key: '5',
       children: <AccountSetting email={user.email} />,
     },
     {
@@ -76,7 +76,7 @@ const Profile = () => {
           Subcriptions
         </Link>
       ),
-      key: 6,
+      key: '6',
       children: "",
     },
     {
@@ -88,7 +88,7 @@ const Profile = () => {
           Payment methods
         </Link>
       ),
-      key: 7,
+      key: '7',
       children: "",
     },
     {
@@ -97,7 +97,7 @@ const Profile = () => {
           Privacy
         </p>
       ),
-      key: 8,
+      key: '8',
       children: <Privacy />,
     },
     {
@@ -106,7 +106,7 @@ const Profile = () => {
           Notifications
         </p>
       ),
-      key: 9,
+      key: '9',
       children: <Notification />,
     },
     {
@@ -115,7 +115,7 @@ const Profile = () => {
           API Clients
         </p>
       ),
-      key: 10,
+      key: '10',
       children: <APIClient />,
     },
     {
@@ -124,7 +124,7 @@ const Profile = () => {
           Close Account
         </p>
       ),
-      key: 11,
+      key: '11',
       children: <CloseAccount />,
     },
   ];

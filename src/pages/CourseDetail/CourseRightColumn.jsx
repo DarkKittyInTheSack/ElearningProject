@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./CourseRightColumn.scss";
+import { Link } from "react-router-dom";
+import { CoursesService } from "../../services/CoursesService";
+import { getLocalStore } from "../../utils/local";
 
-const CourseRightColumn = ({ image }) => {
+const CourseRightColumn = ({ image, code }) => {
+  const user = getLocalStore('user_info')
+  const [successData, setSuccessData] = useState('')
+  const [failData, setFailData] = useState('')
   return (
     <div className=" bg-white course_right_column md:block sm:hidden">
       <div className="max-w-80 mx-auto mt-5 py-5 overflow-hidden object-cover">
@@ -21,21 +27,45 @@ const CourseRightColumn = ({ image }) => {
         </li>
         <li>
           <div className="flex items-center my-2">
-            <button className="text-lg w-full bg-purple-500 border border-purple-500 text-white py-3">
-              Add to cart
-            </button>
+            {
+              code ? (<button type="button" onClick={() =>{
+                  CoursesService.subscribeCourse({
+                    "maKhoaHoc": String(code),
+                    "taiKhoan": user.taiKhoan
+                  }).then((result) => {
+                    document.getElementById('successNotification').style.display = 'block'
+                    document.getElementById('failNotification').style.display = 'none'
+
+                    setFailData('')
+                    setSuccessData('You has been subscribe this courses')
+                  }).catch((err) => {
+                    document.getElementById('successNotification').style.display = 'none'
+                    document.getElementById('failNotification').style.display = 'block'
+                    
+                    setFailData('Sorry, you cannot subscribe this courses')
+                    setSuccessData('')
+                  });
+                
+              }} className="text-lg w-full bg-purple-500 border border-purple-500 text-white py-3">
+                Add to cart
+              </button>) : null
+            }
+            
             <button>
               <i className="fa-regular fa-heart text-lg py-3 px-4 text-center ml-2 border border-black hover:bg-gray-100 duration-500"></i>
             </button>
           </div>
         </li>
+        
         <li>
-          <button className="w-full text-lg border border-black py-3 hover:bg-gray-100 duration-500">
+          <Link to={'/checkout'} className="w-full inline-block text-center text-lg border border-black py-3 hover:bg-gray-100 duration-500">
             Buy Now
-          </button>
+          </Link>
           <span className="font-normal text-gray-600 text-center w-full block text-sm my-3">
             30-Day Money-back guarantee
           </span>
+          <span id='successNotification' className="font-normal text-green-600 w-full text-center text-sm inline-block hidden">{successData}</span>
+          <span id='failNotification' className="font-normal text-red-600 w-full text-center text-sm inline-block hidden">{failData}</span>
         </li>
       </ul>
       <ul className="px-4 font-bold text-black my-5 space-y-2 border-b">

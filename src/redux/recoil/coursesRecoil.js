@@ -1,6 +1,22 @@
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
+import { recoilPersist } from "recoil-persist";
 
-export const coursesRecoil = atom({
-    key: 'coursesRecoil',
-    default: {}
+const {persistAtom} = recoilPersist({
+  key: 'recoil-persist-courses-data-recoil',
+  storage: localStorage,
+  converter: JSON
 })
+
+export const coursesRecoilInit = atom({
+  key: "coursesRecoilInit",
+  default: {},
+  effects_UNSTABLE: [persistAtom]
+});
+
+export const fetchCoursesRecoil = selector({
+  key: "fetchCoursesRecoil",
+  get: ({ get }) => {
+    const courseData = get(coursesRecoilInit);
+    return courseData;
+  },
+});

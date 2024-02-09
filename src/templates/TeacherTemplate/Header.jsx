@@ -23,23 +23,33 @@ const Header = () => {
       if (user) {
         return (
           <>
-            <div className="flex list-none items-center sm:mb-3">
-              <Link to={'/profile'} className="mx-0 text-sm text-white bg-black font-medium border border-black rounded-full leading-4 px-3 py-2 hover:bg-gray-100 hover:text-black duration-300">
+            <div className="flex list-none items-center sm:mb-3 sm:mx-auto">
+              <Link to={`/profile/${user.taiKhoan}`} className="mx-3 text-sm text-white bg-black font-medium border border-black rounded-full leading-4 px-3 py-2 hover:bg-gray-100 hover:text-black duration-300">
                 U
               </Link>
-              <span className="ms-2 font-medium text-base line-clamp-1">Username</span>
+            
+              <button className="mx-0 text-sm text-center border border-black border-t-2 border-b-2 border-l-2 border-r-2 font-medium px-3 py-2 hover:bg-gray-100 duration-300">
+                <i className="fa-solid fa-globe"></i>
+              </button>
             </div>
           </>
         );
       } else {
         return (
           <>
-            <Link to={'/login'} className="mx-0 text-sm text-black  font-medium border border-black border-t-2 border-b-2 border-l-2 border-r-2 px-3 py-2 hover:bg-gray-100 duration-300">
-              Login
-            </Link>
-            <Link to={'/signup'} className="text-sm text-white bg-black border border-black border-t-2 border-b-2 border-l-2 border-r-2 mx-3 font-medium px-3 py-2 hover:text-gray-100 duration-300">
-              Sign Up
-            </Link>
+            <div className="flex list-none items-center sm:mb-3 sm:mx-auto">
+              <Link to={'/login'} className="mx-0 text-sm text-black  font-medium border border-black border-t-2 border-b-2 border-l-2 border-r-2 px-3 py-2 hover:bg-gray-100 duration-300">
+                Login
+              </Link>
+              <Link to={'/signup'} className="text-sm text-white bg-black border border-black border-t-2 border-b-2 border-l-2 border-r-2 mx-3 font-medium px-3 py-2 hover:text-gray-100 duration-300">
+                Sign Up
+              </Link>
+            
+              <button className="mx-0 text-sm text-center border border-black border-t-2 border-b-2 border-l-2 border-r-2 font-medium px-3 py-2 hover:bg-gray-100 duration-300">
+                <i className="fa-solid fa-globe"></i>
+              </button>
+            </div>
+            
           </>
         );
       }
@@ -55,7 +65,7 @@ const Header = () => {
           setSearchData(result.data.items);
         })
         .catch((err) => {
-          console.log(err);
+
         });
     };
   
@@ -226,13 +236,8 @@ const Header = () => {
               </ul>
             </li>
           </ul>
-          <div className="flex list-none items-center sm:mb-3 sm:mx-auto">
-            {renderUser()}
-            
-            <button className="mx-0 text-sm text-center border border-black border-t-2 border-b-2 border-l-2 border-r-2 font-medium px-3 py-2 hover:bg-gray-100 duration-300">
-              <i className="fa-solid fa-globe"></i>
-            </button>
-          </div>
+          {renderUser()}
+          
           
         </div>
       </nav>

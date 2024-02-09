@@ -12,6 +12,10 @@ import coursesPagingSlice from './reducer/coursesPagingSlice';
 import coursesPagingSaga from './middleware/coursesPagingSaga';
 import loadingDataSlice from './reducer/loadingDataSlice';
 import userSlice from "./slice/userSlice";
+import userDataSlice from './reducer/userDataSlice';
+import userDataSaga from './middleware/userDataSaga';
+import userGetByIDSlice from './reducer/userGetByIDSlice';
+import userByIdSaga from './middleware/userByIdSaga';
 
 const middlewareSaga = createSagaMiddleware()
 
@@ -26,6 +30,8 @@ export const store = configureStore(
             coursesPagingSlice,
             loadingDataSlice,
             userSlice,
+            userDataSlice,
+            userGetByIDSlice,
         },
         middleware: (getDefaultMiddleware) => [middlewareSaga,...getDefaultMiddleware()]
     }
@@ -34,3 +40,5 @@ middlewareSaga.run(userHomePageSaga)
 middlewareSaga.run(coursesCategorySaga)
 middlewareSaga.run(coursesByCategorySaga)
 middlewareSaga.run(coursesPagingSaga)
+middlewareSaga.run(userDataSaga)
+middlewareSaga.run(userByIdSaga)

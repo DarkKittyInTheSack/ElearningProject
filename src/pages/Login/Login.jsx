@@ -18,31 +18,23 @@ const Login = () => {
         matKhau: "",
       },
       onSubmit: (values) => {
+        saveLocalStore(values.matKhau,'password')
         userLogin
           .loginServ(values)
           .then((res) => {
-            console.log(res);
-            // thông báo thành công
             messageApi.open({
               type: "success",
-              content: "Đăng nhập thành công",
+              content: "Login Sucessful",
             });
-            // lưu thông tin người dùng
             dispatch(saveInfoUser(res.data));
             saveLocalStore(res.data, "user_info");
-            // chuyển hướng người dùng tới trang chủ
             setTimeout(() => {
               navigate("/");
             }, 1000);
           })
           .catch((err) => {
-            // lỗi không đăng nhập được
-            // messageApi.open({
-            //   type: "error",
-            //   content: err.response.data.content,
-            // });
+
             message.error(err.response.data);
-            console.log(err);
           });
       },
       validationSchema: Yup.object({
