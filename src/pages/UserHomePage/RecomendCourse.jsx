@@ -22,7 +22,7 @@ const RecomendCourse = ({ courses }) => {
         return (
           <div
             className="mb-10 mt-5 flex p-6 border bg-gray-100 border-gray-200"
-            key={maKhoaHoc}
+            key={maKhoaHoc} id="recomend_courses"
           >
             <Link
               to={`/detail/${maKhoaHoc}`}

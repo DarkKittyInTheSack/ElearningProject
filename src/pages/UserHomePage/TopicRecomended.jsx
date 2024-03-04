@@ -127,6 +127,17 @@ const TopicRecomended = ({ category }) => {
           prevArrow: <SamplePrevArrowResponsive />,
         },
       },
+      {
+        breakpoint: 639,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          dots: false,
+          infinite: false,
+          nextArrow: <SampleNextArrowResponsive />,
+          prevArrow: <SamplePrevArrowResponsive />,
+        },
+      }
     ],
   };
 

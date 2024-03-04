@@ -129,6 +129,17 @@ const StartLearning = ({ courses }) => {
           prevArrow: <SamplePrevArrowResponsive />,
         },
       },
+      {
+        breakpoint: 639,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          dots: false,
+          infinite: false,
+          nextArrow: <SampleNextArrowResponsive />,
+          prevArrow: <SamplePrevArrowResponsive />,
+        },
+      }
     ],
   };
 
@@ -143,7 +154,7 @@ const StartLearning = ({ courses }) => {
         
       </h2>
       <Carousel {...setting} className="my-3 w-full space-x-4">
-        <div className="md:flex md:justify-between items-center px-2 py-4 border start_learning_data sm:hidden">
+        <div className="md:flex md:justify-between items-center px-2 py-2.5 border start_learning_data sm:hidden" id="data_display_start">
           <img
             width={"96px"}
             height={"96px"}

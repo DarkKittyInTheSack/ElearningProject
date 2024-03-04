@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import "./header.scss";
 import { CoursesService } from "../../services/CoursesService";
 import { removeFromLocalStorage } from "../../utils/local";
+import ResponsiveMenu from "./ResponsiveMenu";
 
 const Header = () => {
   const isResponsive = useSignals(false);
@@ -24,7 +25,7 @@ const Header = () => {
     if (user) {
       return (
         <>
-          <div className="flex justify-start list-none items-center sm:mb-3 mx-auto">
+          <div className="flex justify-start list-none items-center sm:mb-3 mx-auto header_account_area">
             <Link
               to={`/profile/${user.taiKhoan}`}
               className="uppercase mx-2 text-sm text-white bg-black font-medium border border-black rounded-full leading-4 px-3 py-2 hover:bg-gray-100 hover:text-black duration-300"
@@ -48,7 +49,7 @@ const Header = () => {
     } else {
       return (
         <>
-          <div className="flex justify-start list-none items-center sm:mb-3 mx-auto">
+          <div className="flex justify-start list-none items-center sm:mb-3 mx-auto header_account_area">
             <Link
               to={"/login"}
               className="mx-0 text-sm text-black  font-medium border border-black border-t-2 border-b-2 border-l-2 border-r-2 px-3 py-2 hover:bg-gray-100 duration-300"
@@ -92,9 +93,9 @@ const Header = () => {
 
   return (
     <header className="font-sans mx-auto sm:overflow-x-auto sm:w-full">
-      <nav className="md:p-3 sm:p-2 border-gray-200 border-b-2">
-        <div className="md:flex md:items-center sm:grid sm:grid-cols-1 sm:space-y-3 md:justify-around">
-          <div className="md:flex md:items-center md:mr-3 sm:grid sm:grid-cols-2">
+      <nav className="md:p-3 sm:p-2 border-gray-200 border-b-2 main_nav">
+        <div className="md:flex md:items-center sm:grid sm:grid-cols-1 sm:space-y-3 md:justify-around header_nav_content">
+          <div className="md:flex md:items-center md:mr-3 sm:grid sm:grid-cols-2 header_nav_logo">
             <Link to={"/"} className="px-3 py-2 w-28 outline-none">
               <img
                 src="https://www.udemy.com/staticx/udemy/images/v7/logo-udemy.svg"
@@ -104,7 +105,7 @@ const Header = () => {
 
             <button
               type="button"
-              className="text-sm text-slate-700 mx-3 py-3 z-20 font-normal sm:hidden md:block"
+              className="text-sm text-slate-700 mx-3 py-3 z-20 font-normal sm:hidden md:block btn_header_logo_category"
               onMouseOver={() => {
                 const btn_list = document.getElementById("data_onMouse");
                 btn_list.style.display = "block";
@@ -140,10 +141,13 @@ const Header = () => {
                 const btn_list = document.getElementById("btn_list");
 
                 if (!isResponsive.u) {
-                  btn_list.style.display = "none";
+                  
+                  btn_list.style.transition = 'all 0.5s'
                   isResponsive.u = true;
                 } else {
-                  btn_list.style.display = "block";
+                  btn_list.style.display = 'block'
+                  btn_list.style.transform = "translateX(0)";
+                  btn_list.style.transition = 'all 0.5s'
                   isResponsive.u = false;
                 }
               }}
@@ -208,7 +212,6 @@ const Header = () => {
           ) : null}
           <ul
             className="sm:hidden sm:space-y-3 md:space-y-0 mx-3 md:flex list-none md:items-center sm:text-center"
-            id="btn_list"
           >
             <li>
               <Link
@@ -258,7 +261,7 @@ const Header = () => {
           
         </div>
       </nav>
-      <nav className="py-2 sm:hidden md:block">
+      <nav className="py-2 sm:hidden md:block category_nav">
         <ul className="flex justify-center list-none items-center">
           {category.map((item) => {
             const { maDanhMuc, tenDanhMuc } = item;
@@ -275,6 +278,7 @@ const Header = () => {
           })}
         </ul>
       </nav>
+      <ResponsiveMenu/>
     </header>
   );
 };

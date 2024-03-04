@@ -2,6 +2,19 @@ ul .ant-rate-star-full {
   margin: 1px !important;
 }
 
+#recomend_courses{
+   @media screen and (max-width: 638px){
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+
+      a{
+        display: block;
+        width: 100%;
+        overflow: hidden;
+      }
+   }
+}
+
 .img_recomend_course {
   background-color: #fff;
   background-repeat: no-repeat;

@@ -64,7 +64,7 @@ const Banner = () => {
     dots: false,
   };
   return (
-    <div>
+    <div className="banner">
       <Carousel {...setting}>
         <div className="flex px-5 items-center">
           <div className="absolute px-5 py-3 md:translate-x-24 sm:translate-x-20 md:top-14 sm:top-7 bg-white z-10 banner_item">

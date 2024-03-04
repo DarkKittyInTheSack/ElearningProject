@@ -1,6 +1,47 @@
-.search_hint{
-    top: 73.5px;
-    left: 230px;
-    margin-left: 10px;
-    width: 440px;
+.search_hint {
+  top: 73.5px;
+  left: 230px;
+  margin-left: 10px;
+  width: 440px;
+}
+header {
+  .main_nav {
+    .header_nav_content {
+      .header_nav_logo {
+        @media screen and (max-width: 639px) {
+          display: flex;
+          margin: 0 20px;
+          justify-content: space-between;
+        
+          .btn_header_logo_category{
+            display: none;
+          }
+        }
+      }
+
+      form{
+        @media screen and (max-width: 639px) {
+            display: none;
+        }
+      }
+
+      ul{
+        @media screen and (max-width: 639px) {
+            display: none;
+        }
+      }
+
+      .header_account_area{
+        @media screen and (max-width: 639px) {
+            display: none;
+        }
+      }
+    }
+  }
+
+  .category_nav{
+    @media screen and (max-width: 639px) {
+        display: none;
+    }
+  }
 }

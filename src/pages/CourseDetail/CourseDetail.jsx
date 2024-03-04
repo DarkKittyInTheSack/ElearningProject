@@ -18,48 +18,64 @@ import { coursesRecoilInit } from "../../redux/recoil/coursesRecoil";
 const CourseDetail = () => {
   const location = useLocation().pathname.split("/")[2];
   const { courses } = useSelector((state) => state.coursesByIDSlice);
-  const [_,setCoursesRecoil] = useRecoilState(coursesRecoilInit)
+  const [_, setCoursesRecoil] = useRecoilState(coursesRecoilInit);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getDataThunk(location));
     const handleScroll = (event) => {
-      let stickyData = document.getElementById('fixedScroll')
-      let img = document.querySelector('.course_right_column_img')
-      
-      if(window.pageYOffset >= Number(60)){
-        img.style.display = 'none'
-        stickyData.style.display = 'fixed'
-        stickyData.style.top = 0
-        stickyData.style.right = '8rem'
-        stickyData.style.transition = 'all 0.5s'
-      }
-      if(window.pageYOffset <= Number(60)){
-        img.style.display = 'block'
-        stickyData.style.display = 'fixed'
-        stickyData.style.top = '9rem'
-        stickyData.style.right = '8rem'
-        stickyData.style.transition = 'all 0.5s'
+      let stickyData = document.getElementById("fixedScroll");
+      let img = document.querySelector(".course_right_column_img");
+
+      if (
+        window.pageYOffset >= Number(60) &&
+        window.pageYOffset <= Number(2756)
+      ) {
+        img.style.display = "none";
+        stickyData.style.display = "fixed";
+        stickyData.style.top = 0;
+        stickyData.style.right = "8rem";
+        stickyData.style.transition = "all 0.5s";
+        stickyData.style.zIndex = "10";
+        stickyData.style.opacity = "1";
+      } else {
+        if (
+          window.pageYOffset <= Number(60) ||
+          window.pageYOffset <= Number(2756)
+        ) {
+          img.style.display = "block";
+          stickyData.style.display = "fixed";
+          stickyData.style.top = "9rem";
+          stickyData.style.right = "8rem";
+          stickyData.style.transition = "all 0.5s";
+          stickyData.style.zIndex = "10";
+          stickyData.style.opacity = "1";
+        } else {
+          stickyData.style.opacity = "0";
+          stickyData.style.zIndex = "-1";
+          stickyData.style.transition = "all 0.1s";
+        }
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
     <div>
-      {
-        courses ? (setCoursesRecoil(() => courses)) : <div></div>
-      }
+      {courses ? setCoursesRecoil(() => courses) : <div></div>}
       <div className="bg-slate-800">
         <div className="container mx-auto ">
           <CourseOveral courses={courses} />
           <div className="w-1/4 fixed top-36 right-32" id="fixedScroll">
-            <CourseRightColumn image={courses.hinhAnh} code = {courses.maKhoaHoc}/>
+            <CourseRightColumn
+              image={courses.hinhAnh}
+              code={courses.maKhoaHoc}
+            />
           </div>
         </div>
       </div>

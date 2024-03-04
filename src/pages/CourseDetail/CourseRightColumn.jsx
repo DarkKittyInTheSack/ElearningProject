@@ -3,11 +3,16 @@ import "./CourseRightColumn.scss";
 import { Link } from "react-router-dom";
 import { CoursesService } from "../../services/CoursesService";
 import { getLocalStore } from "../../utils/local";
+import { useRecoilState } from "recoil";
+import { subscriptionListRecoil } from "../../redux/recoil/subscriptionListRecoil";
 
 const CourseRightColumn = ({ image, code }) => {
   const user = getLocalStore('user_info')
   const [successData, setSuccessData] = useState('')
   const [failData, setFailData] = useState('')
+  const [_,setSubscriptionList] = useRecoilState(subscriptionListRecoil)
+  const subscriptionList = getLocalStore('recoil-persist-subscription-list')
+  let list = []
   return (
     <div className=" bg-white course_right_column md:block sm:hidden">
       <div className="max-w-80 mx-auto mt-5 py-5 overflow-hidden object-cover">
@@ -36,9 +41,19 @@ const CourseRightColumn = ({ image, code }) => {
                     document.getElementById('successNotification').style.display = 'block'
                     document.getElementById('failNotification').style.display = 'none'
 
+                    if(subscriptionList == null){
+                      list.push(String(code))
+                      setSubscriptionList(() => list)
+                    }else{
+                      list.push(String(code))
+                      setSubscriptionList((current) => current.concat(list))
+                    }
+
                     setFailData('')
                     setSuccessData('You has been subscribe this courses')
+
                   }).catch((err) => {
+                    console.log(err)
                     document.getElementById('successNotification').style.display = 'none'
                     document.getElementById('failNotification').style.display = 'block'
                     
