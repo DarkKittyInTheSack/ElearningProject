@@ -1,6 +1,10 @@
 import React from 'react'
+import { useRecoilValue } from 'recoil'
+import { fetchSubcriptionRecoil } from '../../redux/recoil/subscriptionListRecoil'
+import { Link } from 'react-router-dom'
 
 const AllCourses = () => {
+    const subscribeCourses = useRecoilValue(fetchSubcriptionRecoil)
   return (
     <div className='bg-white w-full '>
         <div className="container mx-auto my-4">
@@ -64,56 +68,21 @@ const AllCourses = () => {
             </ul>
 
             <div className="grid grid-cols-4 items-center mx-auto">
-                <div className="item" style={{width: '250px'}}>
-                    <div className="py-3 font-bold text-lg border-b">
-                        <img src="https://img-b.udemycdn.com/course/240x135/2222850_4f40.jpg" alt="" loading='lazy' width={'240px'} height={'135px'}/>
-                        <p className='leading-6'>Lorem ipsum dolor, sit amet consectetur adipisicing.</p>
-                        <span className='font-normal text-sm leading-5'>lorem</span>
-                    </div>
-                    <div className="border-t">
-                        <button><p className='font-normal text-base uppercase'>Start course</p></button>
-                    </div>
-                </div>
-                <div className="item" style={{width: '250px'}}>
-                    <div className="py-3 font-bold text-lg border-b">
-                        <img src="https://img-b.udemycdn.com/course/240x135/2222850_4f40.jpg" alt="" loading='lazy' width={'240px'} height={'135px'}/>
-                        <p className='leading-6'>Lorem ipsum dolor, sit amet consectetur adipisicing.</p>
-                        <span className='font-normal text-sm leading-5'>lorem</span>
-                    </div>
-                    <div className="border-t">
-                        <button><p className='font-normal text-base uppercase'>Start course</p></button>
-                    </div>
-                </div>
-                <div className="item" style={{width: '250px'}}>
-                    <div className="py-3 font-bold text-lg border-b">
-                        <img src="https://img-b.udemycdn.com/course/240x135/2222850_4f40.jpg" alt="" loading='lazy' width={'240px'} height={'135px'}/>
-                        <p className='leading-6'>Lorem ipsum dolor, sit amet consectetur adipisicing.</p>
-                        <span className='font-normal text-sm leading-5'>lorem</span>
-                    </div>
-                    <div className="border-t">
-                        <button><p className='font-normal text-base uppercase'>Start course</p></button>
-                    </div>
-                </div>
-                <div className="item" style={{width: '250px'}}>
-                    <div className="py-3 font-bold text-lg border-b">
-                        <img src="https://img-b.udemycdn.com/course/240x135/2222850_4f40.jpg" alt="" loading='lazy' width={'240px'} height={'135px'}/>
-                        <p className='leading-6'>Lorem ipsum dolor, sit amet consectetur adipisicing.</p>
-                        <span className='font-normal text-sm leading-5'>lorem</span>
-                    </div>
-                    <div className="border-t">
-                        <button><p className='font-normal text-base uppercase'>Start course</p></button>
-                    </div>
-                </div>
-                <div className="item" style={{width: '250px'}}>
-                    <div className="py-3 font-bold text-lg border-b">
-                        <img src="https://img-b.udemycdn.com/course/240x135/2222850_4f40.jpg" alt="" loading='lazy' width={'240px'} height={'135px'}/>
-                        <p className='leading-6'>Lorem ipsum dolor, sit amet consectetur adipisicing.</p>
-                        <span className='font-normal text-sm leading-5'>lorem</span>
-                    </div>
-                    <div className="border-t">
-                        <button><p className='font-normal text-base uppercase'>Start course</p></button>
-                    </div>
-                </div>
+                {
+                    subscribeCourses ? (subscribeCourses.map(item =>{
+                        const {maKhoaHoc,tenKhoaHoc,hinhAnh,nguoiTao} = item
+                        return <div className="item" style={{width: '250px'}} key={maKhoaHoc}>
+                            <div className="py-3 font-bold text-lg border-b">
+                                <img src={hinhAnh} alt="" loading='lazy' width={'240px'} height={'135px'}/>
+                                <p className='leading-6 line-clamp-2'>{tenKhoaHoc}</p>
+                                <span className='font-normal text-sm leading-5'>{nguoiTao.hoTen}</span>
+                            </div>
+                            <div className="border-t">
+                                <Link to={`/detail/${maKhoaHoc}`}><p className='font-normal text-base uppercase'>Start course</p></Link>
+                            </div>
+                        </div>
+                    })) : null
+                }
             </div>
         </div>
     </div>

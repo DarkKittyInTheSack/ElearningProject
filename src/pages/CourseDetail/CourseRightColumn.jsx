@@ -6,7 +6,7 @@ import { getLocalStore } from "../../utils/local";
 import { useRecoilState } from "recoil";
 import { subscriptionListRecoil } from "../../redux/recoil/subscriptionListRecoil";
 
-const CourseRightColumn = ({ image, code }) => {
+const CourseRightColumn = ({ image, code,courses }) => {
   const user = getLocalStore('user_info')
   const [successData, setSuccessData] = useState('')
   const [failData, setFailData] = useState('')
@@ -40,12 +40,10 @@ const CourseRightColumn = ({ image, code }) => {
                   }).then((result) => {
                     document.getElementById('successNotification').style.display = 'block'
                     document.getElementById('failNotification').style.display = 'none'
-
+                    list.push(courses)
                     if(subscriptionList == null){
-                      list.push(String(code))
                       setSubscriptionList(() => list)
                     }else{
-                      list.push(String(code))
                       setSubscriptionList((current) => current.concat(list))
                     }
 
@@ -57,7 +55,7 @@ const CourseRightColumn = ({ image, code }) => {
                     document.getElementById('successNotification').style.display = 'none'
                     document.getElementById('failNotification').style.display = 'block'
                     
-                    setFailData('Sorry, you cannot subscribe this courses')
+                    setFailData('Sorry, maybe you has been subscribe this before')
                     setSuccessData('')
                   });
                 
