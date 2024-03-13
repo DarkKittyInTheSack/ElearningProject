@@ -5,6 +5,7 @@ import AllCourses from './AllCourses';
 import EmptyMyLearning from '../../components/EmptyMyLearning';
 import LearningReminder from './LearningReminder';
 import UnsubscribeCourses from './UnsubscribeCourses';
+import WishListCourses from './WishListCourses';
 
 const MyLearning = () => {
     const items = [
@@ -21,7 +22,7 @@ const MyLearning = () => {
         {
           key: '3',
           label: <p className='font-bold text-base px-2 py-1'>Wishlist</p>,
-          children: <EmptyMyLearning/>,
+          children: <WishListCourses/>,
         },
         {
             key: '4',

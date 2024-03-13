@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import {useDispatch,useSelector} from 'react-redux'
 import { getDataToFetch } from '../../redux/reducer/coursesByCategorySlice'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { fetchWishlistRecoil, wishlistCoursesRecoil } from '../../redux/recoil/wishlistCoursesRecoil'
 
 
 const CourseSameCategory = ({category}) => {
   const dispatch = useDispatch()
   const {coursesByCategory} = useSelector((state) => state.coursesByCategorySlice)
+
+  const wishList = useRecoilValue(fetchWishlistRecoil)
+  const [wishlistData,setWishList] = useRecoilState(wishlistCoursesRecoil)
 
   useEffect(() =>{
     if(category){
@@ -46,8 +51,8 @@ const CourseSameCategory = ({category}) => {
                     <p>đ1,700,000</p>
                   </li>
                   <li>
-                    <button className='text-center' onClick={() =>{
-
+                    <button className='text-center' onClick={(data = 0) =>{
+                      wishList.find(item => item.maKhoaHoc === maKhoaHoc) ? data = 1 : setWishList((current) => current.concat(item))
                     }}><i className='fa-regular fa-heart p-3 text-base rounded-full border text-center border-black leading-4'></i></button>
                   </li>
                 </ul>

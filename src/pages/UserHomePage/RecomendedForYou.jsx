@@ -142,7 +142,7 @@ const RecomendedForYou = ({ courses }) => {
           return (
             <Card
               cover={
-                <Link to={`/detail/${maKhoaHoc}`}>
+                <Link to={`/detail/${maKhoaHoc}`} className="bg-gray-200">
                   <img
                     src={hinhAnh}
                     width={"240px"}

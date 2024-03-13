@@ -8,17 +8,19 @@ import "./header.scss";
 import { CoursesService } from "../../services/CoursesService";
 import { removeFromLocalStorage } from "../../utils/local";
 import ResponsiveMenu from "./ResponsiveMenu";
+import { throttle } from "lodash";
+import { useAllCategory } from "../../components/customCategoryHook";
 
 const Header = () => {
   const isResponsive = useSignals(false);
-  const { category } = useSelector((state) => state.coursesCategorySlice);
+  const category = useAllCategory();
   const dispatch = useDispatch();
 
   const { register, handleSubmit } = useForm();
 
-  const [searchData, setSearchData] = useState({});
+  const [searchData, setSearchData] = useState([]);
   const [keyData, setKeyData] = useState("");
-  const [pageData, setPageData] = useState(0);
+  const [pageData, setPageData] = useState(1);
 
   const { user } = useSelector((state) => state.userSlice);
   const renderUser = () => {
@@ -86,6 +88,10 @@ const Header = () => {
 
       });
   };
+
+  const handleSearchProgress = throttle((key,page) =>{
+    setPagingData(key,page,3)
+  },100)
 
   useSignalEffect(() => {
     dispatch(fetchCoursesCategory());
@@ -171,7 +177,7 @@ const Header = () => {
               onChange={(event) => {
                 setKeyData(event.target.value);
                 setPageData(1);
-                setPagingData(keyData, pageData, 3);
+                handleSearchProgress(keyData,pageData)
               }}
             />
           </form>
@@ -203,7 +209,7 @@ const Header = () => {
                 onClick={() => {
                   let count = pageData + 1;
                   setPageData(count);
-                  setPagingData(keyData, pageData, 3);
+                  handleSearchProgress(keyData,pageData)
                 }}
               >
                 Load more

@@ -3,25 +3,26 @@ import "./CourseRightColumn.scss";
 import { Link } from "react-router-dom";
 import { CoursesService } from "../../services/CoursesService";
 import { getLocalStore } from "../../utils/local";
-import { useRecoilState } from "recoil";
-import { subscriptionListRecoil } from "../../redux/recoil/subscriptionListRecoil";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { fetchSubcriptionRecoil, subscriptionListRecoil } from "../../redux/recoil/subscriptionListRecoil";
+import { fetchWishlistRecoil, wishlistCoursesRecoil } from "../../redux/recoil/wishlistCoursesRecoil";
 
 const CourseRightColumn = ({ image, code,courses }) => {
   const user = getLocalStore('user_info')
   const [successData, setSuccessData] = useState('')
   const [failData, setFailData] = useState('')
   const [_,setSubscriptionList] = useRecoilState(subscriptionListRecoil)
-  const subscriptionList = getLocalStore('recoil-persist-subscription-list')
+  const [currentWishlist,setWishlist] = useRecoilState(wishlistCoursesRecoil)
+  const wishlist = useRecoilValue(fetchWishlistRecoil)
+  const subscriptionList = useRecoilValue(fetchSubcriptionRecoil)
   let list = []
   return (
     <div className=" bg-white course_right_column md:block sm:hidden">
-      <div className="max-w-80 mx-auto mt-5 py-5 overflow-hidden object-cover">
+      <div className="max-h-80 max-w-80 mx-auto mt-5 py-5 overflow-hidden object-cover">
         <img
           src={image}
           alt=""
           className="block w-full p-1 course_right_column_img"
-          width={"240px"}
-          height={"135px"}
           loading="eager"
         />
       </div>
@@ -33,7 +34,8 @@ const CourseRightColumn = ({ image, code,courses }) => {
         <li>
           <div className="flex items-center my-2">
             {
-              code ? (<button type="button" onClick={() =>{
+              subscriptionList.find(item => item.maKhoaHoc === code) ? <button className="text-lg w-full bg-purple-500 border border-purple-500 text-white py-3">Already Subscribe</button> : <button type="button" onClick={() =>{
+                if(user!= null){
                   CoursesService.subscribeCourse({
                     "maKhoaHoc": String(code),
                     "taiKhoan": user.taiKhoan
@@ -41,15 +43,15 @@ const CourseRightColumn = ({ image, code,courses }) => {
                     document.getElementById('successNotification').style.display = 'block'
                     document.getElementById('failNotification').style.display = 'none'
                     list.push(courses)
-                    if(subscriptionList == null){
+                    if(subscriptionList.length == 0){
                       setSubscriptionList(() => list)
                     }else{
                       setSubscriptionList((current) => current.concat(list))
                     }
-
+  
                     setFailData('')
                     setSuccessData('You has been subscribe this courses')
-
+  
                   }).catch((err) => {
                     console.log(err)
                     document.getElementById('successNotification').style.display = 'none'
@@ -58,22 +60,47 @@ const CourseRightColumn = ({ image, code,courses }) => {
                     setFailData('Sorry, maybe you has been subscribe this before')
                     setSuccessData('')
                   });
-                
+                }else{
+                  window.location.href = 'http://localhost:3000/login'
+                }
               }} className="text-lg w-full bg-purple-500 border border-purple-500 text-white py-3">
-                Add to cart
-              </button>) : null
+                  Subscribe
+                </button>
             }
             
-            <button>
+            <button onClick={() =>{
+              let list = []
+              if(wishlist.length == 0){
+                list.push(courses)
+                setWishlist(() =>list)
+
+                document.getElementById('successNotification').style.display = 'block'
+                document.getElementById('failNotification').style.display = 'none'
+
+                setSuccessData('This courses has been add to your wishlist')
+              }else{
+                list.push(courses)
+                setWishlist((current) =>current.concat(list))
+
+                document.getElementById('successNotification').style.display = 'block'
+                document.getElementById('failNotification').style.display = 'none'
+
+                setSuccessData('This courses has been add to your wishlist')
+              }
+            }}>
               <i className="fa-regular fa-heart text-lg py-3 px-4 text-center ml-2 border border-black hover:bg-gray-100 duration-500"></i>
             </button>
           </div>
         </li>
         
         <li>
-          <Link to={'/checkout'} className="w-full inline-block text-center text-lg border border-black py-3 hover:bg-gray-100 duration-500">
-            Buy Now
-          </Link>
+          {
+            subscriptionList.find(item => item.maKhoaHoc === code) ? null :
+            <Link to={user!= null ?'/checkout' : '/login'} className="w-full inline-block text-center text-lg border border-black py-3 hover:bg-gray-100 duration-500">
+              Buy Now
+            </Link>
+          }
+          
           <span className="font-normal text-gray-600 text-center w-full block text-sm my-3">
             30-Day Money-back guarantee
           </span>

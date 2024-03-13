@@ -7,16 +7,14 @@ import RecomendedForYou from './RecomendedForYou'
 import TopicRecomended from './TopicRecomended'
 import { fetchCourses } from '../../redux/reducer/userHomePageSlice'
 import { fetchCoursesCategory } from '../../redux/reducer/coursesCategorySlice'
-import { useRecoilState} from 'recoil'
 
 import { endedLoading, startedLoading } from '../../redux/reducer/loadingDataSlice'
-import { categoryRecoil } from '../../redux/recoil/categoryRecoil'
+import { useAllCategory } from '../../components/customCategoryHook'
 
 const Home = () => {
   const dispatch = useDispatch()
   const {courses} = useSelector((state) => state.userHomePageSlice)
-  const {category} = useSelector((state) => state.coursesCategorySlice)
-  const [_,setCategoryList] = useRecoilState(categoryRecoil)
+  const category = useAllCategory()
 
   useEffect(() =>{
     dispatch(startedLoading())
@@ -45,9 +43,6 @@ const Home = () => {
 
   return (
     <div className='container mx-auto'>
-      {
-        category ? (setCategoryList(() => category)) : (setCategoryList(() => category))
-      }
         <Banner/>
         <StartLearning courses={getRandomData(0,7)}/>
         <RecomendCourse courses={getRandomData(0,1)}/>

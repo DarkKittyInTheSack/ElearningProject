@@ -28,7 +28,7 @@ export const UserService = {
       {
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${dataUser.accessToken}`,
+          "Authorization": `Bearer ${dataUser ? dataUser.accessToken : ' '}`,
           "TokenCybersoft": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCBTw6FuZyAwOSIsIkhldEhhblN0cmluZyI6IjMwLzA1LzIwMjQiLCJIZXRIYW5UaW1lIjoiMTcxNzAyNzIwMDAwMCIsIm5iZiI6MTY5MjI5MTYwMCwiZXhwIjoxNzE3MTc0ODAwfQ.7MW8E_eXXd0bcbNFchNRQTlWpRBVvM0yUAkLRSo12ws'
         },
       }

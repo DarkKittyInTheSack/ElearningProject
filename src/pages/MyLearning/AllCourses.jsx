@@ -2,6 +2,7 @@ import React from 'react'
 import { useRecoilValue } from 'recoil'
 import { fetchSubcriptionRecoil } from '../../redux/recoil/subscriptionListRecoil'
 import { Link } from 'react-router-dom'
+import EmptyMyLearning from '../../components/EmptyMyLearning'
 
 const AllCourses = () => {
     const subscribeCourses = useRecoilValue(fetchSubcriptionRecoil)
@@ -73,7 +74,10 @@ const AllCourses = () => {
                         const {maKhoaHoc,tenKhoaHoc,hinhAnh,nguoiTao} = item
                         return <div className="item" style={{width: '250px'}} key={maKhoaHoc}>
                             <div className="py-3 font-bold text-lg border-b">
-                                <img src={hinhAnh} alt="" loading='lazy' width={'240px'} height={'135px'}/>
+                                <Link to={`/detail/${maKhoaHoc}`}>
+                                    <img src={hinhAnh} alt="" loading='lazy' width={'240px'} height={'135px'}/>
+                                </Link>
+                                
                                 <p className='leading-6 line-clamp-2'>{tenKhoaHoc}</p>
                                 <span className='font-normal text-sm leading-5'>{nguoiTao.hoTen}</span>
                             </div>
@@ -81,7 +85,7 @@ const AllCourses = () => {
                                 <Link to={`/detail/${maKhoaHoc}`}><p className='font-normal text-base uppercase'>Start course</p></Link>
                             </div>
                         </div>
-                    })) : null
+                    })) : <EmptyMyLearning/>
                 }
             </div>
         </div>

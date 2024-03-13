@@ -7,7 +7,7 @@ import {
   VideoCameraOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, Button, theme } from "antd";
-import { Link, Outlet,useLocation } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { getLocalStore } from "../../utils/local";
 import PageRestricted from "../../components/PageRestricted";
 const { Header, Sider, Content } = Layout;
@@ -22,7 +22,7 @@ const AdminTemplate = () => {
   return (
     <div>
       {
-        user.maLoaiNguoiDung === 'GV' ?
+        user != null && user.maLoaiNguoiDung === 'GV' ?
         (<Layout className="min-h-screen">
         <Sider trigger={null} collapsible collapsed={collapsed}>
           <div className="demo-logo-vertical" />
@@ -46,6 +46,16 @@ const AdminTemplate = () => {
                 icon: <UploadOutlined />,
                 label: <Link to={"/admin/qlkh"}>Quản lí Khóa Học</Link>,
               },
+              {
+                key: "/admin/qlgdkh",
+                icon: <UploadOutlined />,
+                label: <Link to={"/admin/qlgdkh"}>Quản lí ghi danh khóa học</Link>,
+              },
+              {
+                key: "/admin/qlgdnd",
+                icon: <UploadOutlined />,
+                label: <Link to={"/admin/qlkh"}>Quản lí ghi danh người dùng</Link>,
+              }
             ]}
           />
         </Sider>

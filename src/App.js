@@ -31,6 +31,7 @@ import AdminAddNewStudent from './pages/QuanLyTaiKhoanHV/AdminAddNewStudent';
 import AdminAddNewTeacher from './pages/QuanLyTaiKhoanGV/AdminAddNewTeacher';
 import UpdateCurrentStudent from './pages/QuanLyTaiKhoanHV/UpdateCurrentStudent';
 import UpdateCurrentTeacher from './pages/QuanLyTaiKhoanGV/UpdateCurrentTeacher';
+import QuanLyGhiDanhKhoaHoc from './pages/QuanLyGhiDanhKhoaHoc/QuanLyGhiDanhKhoaHoc';
 
 function App() {
   return (
@@ -73,6 +74,7 @@ function App() {
           <Route element={<QuanLyTaiKhoanHV />} path="qlhv" />
           <Route element={<QuanLyTaiKhoanGV />} path="qlgv" />
           <Route element={<QuanLyKhoaHoc />} path="qlkh" />
+          <Route element={<QuanLyGhiDanhKhoaHoc />} path="qlgdkh" />
           <Route element={<AdminAddCourses />} path="addCourses" />
           <Route element={<AdminAddNewStudent/>} path="addNewStudent" />
           <Route element={<AdminAddNewTeacher/>} path="addNewTeacher" />
