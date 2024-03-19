@@ -24,7 +24,7 @@ const AdminAddNewTeacher = () => {
 
             window.location.href = 'http://localhost:3000/admin/qlgv'
         }).catch((err) => {
-
+                console.log(err);
         });
     }
 

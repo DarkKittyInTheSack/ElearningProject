@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Rate } from "antd";
 import "./RecomendCourse.scss";
 import { Link } from "react-router-dom";
 
 const RecomendCourse = ({ courses }) => {
+  const coursesItem = useContext(courses)
   return (
     <div className="m-5">
       <h2 className="font-bold font-serif text-4xl mb-7">What to learn next</h2>
       <span className="font-bold text-2xl">Our top pick for you</span>
 
-      {courses.map((item) => {
+      {coursesItem.map((item) => {
         const {
           maKhoaHoc,
           tenKhoaHoc,

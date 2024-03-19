@@ -37,9 +37,9 @@ const columns = [
             onClick={() => {
               UserService.deleteUser(record.taiKhoan)
               .then((result) => {
-
+                console.log(result)
               }).catch((err) => {
-
+                console.log(err)
               });
             }}
             className="text-white bg-red-600 py-2 px-4 rounded-md"
@@ -54,8 +54,8 @@ const columns = [
         </div>
       ),
     },
-  ],
-  QuanLyTaiKhoanHV = () => {
+  ]
+ const QuanLyTaiKhoanHV = () => {
     const dispatch = useDispatch();
     const { userList } = useSelector((state) => state.userDataSlice);
     const [userListFilter, setUserlistFilter] = useState([]);
@@ -83,7 +83,7 @@ const columns = [
           />
 
           <Link
-            to={"/admin/updateStudent"}
+            to={"/admin/addNewStudent"}
             className="px-3 py-2 bg-black rounded text-white font-bold"
           >
             Thêm học viên

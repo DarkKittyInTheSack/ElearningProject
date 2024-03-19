@@ -32,6 +32,9 @@ import AdminAddNewTeacher from './pages/QuanLyTaiKhoanGV/AdminAddNewTeacher';
 import UpdateCurrentStudent from './pages/QuanLyTaiKhoanHV/UpdateCurrentStudent';
 import UpdateCurrentTeacher from './pages/QuanLyTaiKhoanGV/UpdateCurrentTeacher';
 import QuanLyGhiDanhKhoaHoc from './pages/QuanLyGhiDanhKhoaHoc/QuanLyGhiDanhKhoaHoc';
+import UpdateCourses from './pages/QuanLyKhoaHoc/UpdateCourses';
+import QuanLyGhiDanhKhoaHocCHoXetDuyet from './pages/QuanLyGhiDanhKhoaHoc/QuanLyGhiDanhKhoaHocCHoXetDuyet';
+import AllYourCourse from './pages/TeachOn/AllYourCourse';
 
 function App() {
   return (
@@ -68,18 +71,21 @@ function App() {
               
             </Route>
             <Route element={<AddNewCourses/>} path='newCourses'/>
+            <Route element={<AllYourCourse/>} path='yourCourse/:taiKhoan'/>
         </Route>
 
         <Route element={<AdminTemplate />} path="/admin">
           <Route element={<QuanLyTaiKhoanHV />} path="qlhv" />
           <Route element={<QuanLyTaiKhoanGV />} path="qlgv" />
           <Route element={<QuanLyKhoaHoc />} path="qlkh" />
-          <Route element={<QuanLyGhiDanhKhoaHoc />} path="qlgdkh" />
+          <Route element={<QuanLyGhiDanhKhoaHoc />} path="qlgdkh" /> 
+          <Route element={<QuanLyGhiDanhKhoaHocCHoXetDuyet />} path="qlgdkhcxd" /> 
           <Route element={<AdminAddCourses />} path="addCourses" />
           <Route element={<AdminAddNewStudent/>} path="addNewStudent" />
           <Route element={<AdminAddNewTeacher/>} path="addNewTeacher" />
           <Route element={<UpdateCurrentStudent/>} path="updateStudent/:id" />
           <Route element={<UpdateCurrentTeacher/>} path="updateTeacher/:id" />
+          <Route element={<UpdateCourses/>} path="updateCourses/:id" />
         </Route>
       </Routes>
     </>

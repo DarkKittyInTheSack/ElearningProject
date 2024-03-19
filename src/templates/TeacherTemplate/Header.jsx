@@ -1,82 +1,111 @@
-import { useSignalEffect, useSignals } from "@preact/signals-react/runtime";
-import React, { useState } from "react";
+import { useSignals } from "@preact/signals-react/runtime";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCoursesCategory } from "../../redux/reducer/coursesCategorySlice";
 import { useForm } from "react-hook-form";
 import "./header.scss";
 import { CoursesService } from "../../services/CoursesService";
+import { removeFromLocalStorage } from "../../utils/local";
+import ResponsiveMenu from "./ResponsiveMenu";
+import { debounce } from "lodash";
+import { useAllCategory } from "../../components/customCategoryHook";
+import { useRecoilState } from "recoil";
+import { subscriptionListRecoil } from "../../redux/recoil/subscriptionListRecoil";
 
 const Header = () => {
-    const isResponsive = useSignals(false);
-    const { category } = useSelector((state) => state.coursesCategorySlice);
-    const dispatch = useDispatch();
-  
-    const { register, handleSubmit } = useForm();
-  
-    const [searchData, setSearchData] = useState({});
-    const [keyData, setKeyData] = useState("");
-    const [pageData, setPageData] = useState(0);
-    
-    const { user } = useSelector((state) => state.userSlice);
-    const renderUser = () => {
-      if (user) {
-        return (
-          <>
-            <div className="flex list-none items-center sm:mb-3 sm:mx-auto">
-              <Link to={`/profile/${user.taiKhoan}`} className="mx-3 text-sm text-white bg-black font-medium border border-black rounded-full leading-4 px-3 py-2 hover:bg-gray-100 hover:text-black duration-300">
-                U
-              </Link>
-            
-              <button className="mx-0 text-sm text-center border border-black border-t-2 border-b-2 border-l-2 border-r-2 font-medium px-3 py-2 hover:bg-gray-100 duration-300">
-                <i className="fa-solid fa-globe"></i>
-              </button>
-            </div>
-          </>
-        );
-      } else {
-        return (
-          <>
-            <div className="flex list-none items-center sm:mb-3 sm:mx-auto">
-              <Link to={'/login'} className="mx-0 text-sm text-black  font-medium border border-black border-t-2 border-b-2 border-l-2 border-r-2 px-3 py-2 hover:bg-gray-100 duration-300">
-                Login
-              </Link>
-              <Link to={'/signup'} className="text-sm text-white bg-black border border-black border-t-2 border-b-2 border-l-2 border-r-2 mx-3 font-medium px-3 py-2 hover:text-gray-100 duration-300">
-                Sign Up
-              </Link>
-            
-              <button className="mx-0 text-sm text-center border border-black border-t-2 border-b-2 border-l-2 border-r-2 font-medium px-3 py-2 hover:bg-gray-100 duration-300">
-                <i className="fa-solid fa-globe"></i>
-              </button>
-            </div>
-            
-          </>
-        );
-      }
-    };
-  
-    const onSubmit = (data) => {
-      window.location.href = `http://localhost:3000/search/${data.searchKey}`;
-    };
-  
-    const setPagingData = (key, page, pageSize) => {
-      CoursesService.getCoursesPaging(key, page, pageSize)
-        .then((result) => {
-          setSearchData(result.data.items);
-        })
-        .catch((err) => {
+  const isResponsive = useSignals(false);
+  const category = useAllCategory();
+  const dispatch = useDispatch();
 
-        });
-    };
-  
-    useSignalEffect(() => {
-      dispatch(fetchCoursesCategory());
-    }, []);
+  const { register, handleSubmit } = useForm();
+
+  const [searchData, setSearchData] = useState([]);
+  const [keyData, setKeyData] = useState("");
+  const [pageData, setPageData] = useState(1);
+  const [_,setClearLogoutData] = useRecoilState(subscriptionListRecoil)
+
+  const { user } = useSelector((state) => state.userSlice);
+  const renderUser = () => {
+    if (user) {
+      return (
+        <>
+          <div className="flex justify-start list-none items-center sm:mb-3 mx-auto header_account_area">
+            <Link
+              to={`/profile/${user.taiKhoan}`}
+              className="uppercase mx-2 text-sm text-white bg-black font-medium border border-black rounded-full leading-4 px-3 py-2 hover:bg-gray-100 hover:text-black duration-300"
+            >
+              {user.taiKhoan.split("").slice(0, 1)}
+            </Link>
+
+            <button type="button" onClick={() =>{
+              removeFromLocalStorage('user_info')
+              removeFromLocalStorage('password')
+
+              setClearLogoutData((current) => {current = []})
+              window.location.href = 'http://localhost:3000/'
+              
+            }} className="mx-0 text-sm text-center border border-black border-t-2 border-b-2 border-l-2 border-r-2 font-medium px-3 py-2 hover:bg-gray-100 duration-300">
+              <i className="fa-solid fa-arrow-right-from-bracket"></i>
+            </button>
+          </div>
+          
+        </>
+      );
+    } else {
+      return (
+        <>
+          <div className="flex justify-start list-none items-center sm:mb-3 mx-auto header_account_area">
+            <Link
+              to={"/login"}
+              className="mx-0 text-sm text-black  font-medium border border-black border-t-2 border-b-2 border-l-2 border-r-2 px-3 py-2 hover:bg-gray-100 duration-300"
+            >
+              Login
+            </Link>
+            <Link
+              to={"/signup"}
+              className="text-sm text-white bg-black border border-black border-t-2 border-b-2 border-l-2 border-r-2 mx-3 font-medium px-3 py-2 hover:text-gray-100 duration-300"
+            >
+              Sign Up
+            </Link>
+
+            <button className="mx-0 text-sm text-center border border-black border-t-2 border-b-2 border-l-2 border-r-2 font-medium px-3 py-2 hover:bg-gray-100 duration-300">
+              <i className="fa-solid fa-globe"></i>
+            </button>
+          </div>
+          
+        </>
+      );
+    }
+  };
+
+  const onSubmit = (data) => {
+    window.location.href = `http://localhost:3000/search/${data.searchKey}`;
+  };
+
+  const setPagingData = (key, page, pageSize) => {
+    CoursesService.getCoursesPaging(key, page, pageSize)
+      .then((result) => {
+        setSearchData(result.data.items);
+      })
+      .catch((err) => {
+
+      });
+  };
+
+  const handleSearchProgress = debounce((key,page) =>{
+    setPagingData(key,page,3)
+  },100)
+
+  useEffect(() => {
+    dispatch(fetchCoursesCategory());
+  }, []);
+
   return (
     <header className="font-sans mx-auto sm:overflow-x-auto sm:w-full">
-      <nav className="md:p-3 sm:p-2 border-gray-200 border-b-2">
-        <div className="md:flex md:items-center sm:grid sm:grid-cols-1 sm:space-y-3 md:justify-around">
-          <div className="md:flex md:items-center md:mr-3 sm:grid sm:grid-cols-2">
+      <nav className="md:p-3 sm:p-2 border-gray-200 border-b-2 main_nav">
+        <div className="md:flex md:items-center sm:grid sm:grid-cols-1 sm:space-y-3 md:justify-around header_nav_content">
+          <div className="md:flex md:items-center md:mr-3 sm:grid sm:grid-cols-2 header_nav_logo">
             <Link to={"/"} className="px-3 py-2 w-28 outline-none">
               <img
                 src="https://www.udemy.com/staticx/udemy/images/v7/logo-udemy.svg"
@@ -86,7 +115,7 @@ const Header = () => {
 
             <button
               type="button"
-              className="text-sm text-slate-700 mx-3 py-3 z-20 font-normal sm:hidden md:block"
+              className="text-sm text-slate-700 mx-3 py-3 z-20 font-normal sm:hidden md:block btn_header_logo_category"
               onMouseOver={() => {
                 const btn_list = document.getElementById("data_onMouse");
                 btn_list.style.display = "block";
@@ -122,10 +151,13 @@ const Header = () => {
                 const btn_list = document.getElementById("btn_list");
 
                 if (!isResponsive.u) {
-                  btn_list.style.display = "none";
+                  
+                  btn_list.style.transition = 'all 0.5s'
                   isResponsive.u = true;
                 } else {
-                  btn_list.style.display = "block";
+                  btn_list.style.display = 'block'
+                  btn_list.style.transform = "translateX(0)";
+                  btn_list.style.transition = 'all 0.5s'
                   isResponsive.u = false;
                 }
               }}
@@ -149,7 +181,7 @@ const Header = () => {
               onChange={(event) => {
                 setKeyData(event.target.value);
                 setPageData(1);
-                setPagingData(keyData, pageData, 3);
+                handleSearchProgress(keyData,pageData)
               }}
             />
           </form>
@@ -181,7 +213,7 @@ const Header = () => {
                 onClick={() => {
                   let count = pageData + 1;
                   setPageData(count);
-                  setPagingData(keyData, pageData, 3);
+                  handleSearchProgress(keyData,pageData)
                 }}
               >
                 Load more
@@ -190,16 +222,7 @@ const Header = () => {
           ) : null}
           <ul
             className="sm:hidden sm:space-y-3 md:space-y-0 mx-3 md:flex list-none md:items-center sm:text-center"
-            id="btn_list"
           >
-            <li>
-              <Link
-                to={"/business"}
-                className="text-sm text-slate-700 mx-3 font-normal hover:text-purple-500 duration-500"
-              >
-                Udemy Business
-              </Link>
-            </li>
             <li>
               <Link
                 to={"/teacher"}
@@ -238,26 +261,9 @@ const Header = () => {
           </ul>
           {renderUser()}
           
-          
         </div>
       </nav>
-      <nav className="py-2 sm:hidden md:block">
-        <ul className="flex justify-center list-none items-center">
-          {category.map((item) => {
-            const { maDanhMuc, tenDanhMuc } = item;
-            return (
-              <li key={maDanhMuc}>
-                <a
-                  href={`/category/${maDanhMuc}`}
-                  className="text-sm text-slate-700 mx-3 font-medium hover:text-purple-500 duration-500"
-                >
-                  {tenDanhMuc}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
+      <ResponsiveMenu/>
     </header>
   )
 }

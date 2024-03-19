@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Carousel } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import "./StartLearning.scss";
@@ -143,6 +143,8 @@ const StartLearning = ({ courses }) => {
     ],
   };
 
+  const coursesList = useContext(courses)
+
   const user = getLocalStore('user_info')
 
   return (
@@ -173,8 +175,8 @@ const StartLearning = ({ courses }) => {
             </button>
           </div>
         </div>
-        {courses
-          ? courses.map((item) => {
+        {coursesList
+          ? coursesList.map((item) => {
               const { maKhoaHoc, tenKhoaHoc, hinhAnh, danhMucKhoaHoc } = item;
               return (
                 <div

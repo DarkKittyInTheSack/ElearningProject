@@ -36,9 +36,9 @@ const columns = [
             onClick={() => {
               UserService.deleteUser(record.taiKhoan)
               .then((result) => {
-
+                window.location.href = 'http://localhost:3000/admin/qlgv'
               }).catch((err) => {
-
+                console.log(err)
               });
             }}
             className="text-white bg-red-600 py-2 px-4 rounded-md"
@@ -90,7 +90,14 @@ const QuanLyTaiKhoanGV = () => {
               pageSize: 10,
   
             }}
-          />) : null
+          />) : (<Table
+            columns={columns}
+            dataSource={userListFilter}
+            pagination={{
+              pageSize: 10,
+  
+            }}
+          />)
         }
     </div>
   );

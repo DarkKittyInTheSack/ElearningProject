@@ -33,7 +33,9 @@ export const store = configureStore(
             userDataSlice,
             userGetByIDSlice,
         },
-        middleware: (getDefaultMiddleware) => [middlewareSaga,...getDefaultMiddleware()]
+        middleware: (getDefaultMiddleware) => [middlewareSaga,...getDefaultMiddleware({
+            serializableCheck: false
+        })]
     }
 )
 middlewareSaga.run(userHomePageSaga)

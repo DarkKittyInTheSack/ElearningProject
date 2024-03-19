@@ -25,7 +25,7 @@ const UpdateCurrentTeacher = () => {
     } = useForm({
       defaultValues: {
             taiKhoan: location,
-            hoTen: user.hoTen,
+            hoTen: user.hoTen ? user.hoTen : "",
             soDT: user.soDt,
             maLoaiNguoiDung: "GV",
             maNhom: "GP01",

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import Banner from './Banner'
 import StartLearning from './StartLearning'
@@ -34,19 +34,31 @@ const Home = () => {
   const getRandomData = (first,last) =>{
       let data = []
       for(let i = first; i < last; i ++){
-        if(courses[generateRandomNumber()]){
+        if(courses[generateRandomNumber()] && !data.includes(data[i])){
           data[i] = courses[generateRandomNumber()]
         }
       }
       return data
   }
 
+  const RanDomCourseList = createContext(null)
+
   return (
     <div className='container mx-auto'>
+
         <Banner/>
-        <StartLearning courses={getRandomData(0,7)}/>
-        <RecomendCourse courses={getRandomData(0,1)}/>
-        <RecomendedForYou courses={getRandomData(0,10)}/>
+        <RanDomCourseList.Provider value={getRandomData(0,7)}>
+          <StartLearning courses={RanDomCourseList}/>
+        </RanDomCourseList.Provider>
+
+        <RanDomCourseList.Provider value={getRandomData(0,1)}>
+          <RecomendCourse courses={RanDomCourseList}/>
+        </RanDomCourseList.Provider>
+        
+        <RanDomCourseList.Provider value={getRandomData(0,10)}>
+          <RecomendedForYou courses={RanDomCourseList}/>
+        </RanDomCourseList.Provider>
+        
         <TopicRecomended category = {category}/>
     </div>
   )

@@ -1,16 +1,24 @@
 import React, { useState } from "react";
 import {Input,DatePicker} from 'antd'
+import { Link } from "react-router-dom";
+import { getLocalStore } from "../../utils/local";
 const {TextArea} = Input
 const AddNewCourses = () => {
 
   const [imagePicker, setImagePicker] = useState()
+  const user = getLocalStore('user_info')
 
   return (
     <div className="container mx-auto py-10">
-      <div className="mb-10">
-        <h2 className="font-bold font-sans text-2xl ">Add new Course</h2>
-        <span className="font-normal text-base my-3 ">Share your knowledge for everyone</span>
+      <div className="flex justify-between items-center">
+        <div className="mb-10">
+          <h2 className="font-bold font-sans text-2xl ">Add new Course</h2>
+          <span className="font-normal text-base my-3 ">Share your knowledge for everyone</span>
+        </div>
+
+        <Link to={`/teacher/yourCourse/${user.taiKhoan}`} className="bg-black px-2 py-3 rounded text-white">View all your course</Link>
       </div>
+      
 
       <ul className="font-bold space-y-3">
         <li>

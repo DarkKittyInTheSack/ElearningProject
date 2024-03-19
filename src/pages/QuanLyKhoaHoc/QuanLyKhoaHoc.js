@@ -36,13 +36,13 @@ const columns = [
           onClick={() => {
             CoursesService.deleteCourses(record.maKhoaHoc)
               .then((result) => {})
-              .catch((err) => {});
+              .catch((err) => {console.log(err);});
           }}
           className="text-white bg-red-600 py-2 px-4 rounded-md"
         >
           Xóa
         </button>
-        <Link className="text-white bg-yellow-600 py-2 px-4 rounded-md">
+        <Link to={`/admin/updateCourses/${record.maKhoaHoc}`} className="text-white bg-yellow-600 py-2 px-4 rounded-md">
           Sửa
         </Link>
       </div>

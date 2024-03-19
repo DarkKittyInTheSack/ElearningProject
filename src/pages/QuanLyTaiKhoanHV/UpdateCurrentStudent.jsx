@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { UserService } from "../../services/UserService";
 import { useLocation } from "react-router-dom";
 import {useDispatch,useSelector} from 'react-redux'
-import { fetchUserData, getUserByIdThunk } from "../../redux/reducer/userGetByIDSlice";
+import { fetchUserData } from "../../redux/reducer/userGetByIDSlice";
 
 const UpdateCurrentStudent = () => {
   const location = useLocation().pathname.split("/")[3];
@@ -93,7 +93,7 @@ const UpdateCurrentStudent = () => {
 
           <input
             type="text"
-            className="font-bold text-base p-3 border border-black w-full"
+            className="font-bold text-base p-3 border border-black w-full outline-none"
             placeholder="Student Phone Number"
             {...register("soDT", {
               required: "Student Phone Number is required",
@@ -117,7 +117,7 @@ const UpdateCurrentStudent = () => {
 
           <input
             type="email"
-            className="font-bold text-base p-3 border border-black w-full"
+            className="font-bold text-base p-3 border border-black w-full outline-none"
             placeholder="Student Email"
             {...register("email", {
               required: "Student Email is required",

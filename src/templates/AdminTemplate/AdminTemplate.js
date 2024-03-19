@@ -52,9 +52,9 @@ const AdminTemplate = () => {
                 label: <Link to={"/admin/qlgdkh"}>Quản lí ghi danh khóa học</Link>,
               },
               {
-                key: "/admin/qlgdnd",
+                key: "/admin/qlgdkhcxd",
                 icon: <UploadOutlined />,
-                label: <Link to={"/admin/qlkh"}>Quản lí ghi danh người dùng</Link>,
+                label: <Link to={"/admin/qlgdkhcxd"}>Quản lí ghi danh khóa học chờ xét duyệt</Link>,
               }
             ]}
           />

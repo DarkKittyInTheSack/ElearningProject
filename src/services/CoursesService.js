@@ -51,6 +51,7 @@ export const CoursesService = {
             }
           )
     },
+
     deleteCourses: (data) =>{
         return axios.delete(
             `https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/XoaKhoaHoc?MaKhoaHoc=${data}`,
@@ -77,7 +78,27 @@ export const CoursesService = {
       )
     },
 
+    updateCurrentCourses: (data) =>{
+      return https.put('/api/QuanLyKhoaHoc/CapNhatKhoaHoc',data)
+    },
+
     uploadFileImageCourses: (data) =>{
       return https.post('/api/QuanLyKhoaHoc/UploadHinhAnhKhoaHoc',data)
+    },
+
+    RegisterStudent: (data) =>{
+      return https.post('/api/QuanLyKhoaHoc/GhiDanhKhoaHoc',data)
+    },
+
+    getCourseSubscribeByStudentId: (data) =>{
+      return https.post('/api/QuanLyNguoiDung/LayDanhSachKhoaHocChoXetDuyet',data)
+    },
+
+    getCourseStudentList: (data) =>{
+      return https.post('/api/QuanLyNguoiDung/LayDanhSachHocVienKhoaHoc',data)
+    },
+
+    cancelRegistration: (data) =>{
+      return https.post('/api/QuanLyKhoaHoc/HuyGhiDanh',data)
     }
 }

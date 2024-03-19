@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import CourseOveral from "./CourseOveral";
 import WhatYouLearn from "./WhatYouLearn";
 import TopCompanyChoose from "./TopCompanyChoose";
@@ -11,15 +10,13 @@ import CourseSameCategory from "./CourseSameCategory";
 import CourseRating from "./CourseRating";
 import RelativeCourse from "./RelativeCourse";
 import CourseRightColumn from "./CourseRightColumn";
-import { getDataThunk } from "../../redux/reducer/coursesByIDSlice";
+import { useCourseById } from "../../components/customGetCourseById";
 
 const CourseDetail = () => {
   const location = useLocation().pathname.split("/")[2];
-  const { courses } = useSelector((state) => state.coursesByIDSlice);
-  const dispatch = useDispatch();
+  const courses = useCourseById(location)
 
   useEffect(() => {
-    dispatch(getDataThunk(location));
     const handleScroll = (event) => {
       let stickyData = document.getElementById("fixedScroll");
       let img = document.querySelector(".course_right_column_img");

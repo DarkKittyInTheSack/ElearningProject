@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Carousel, Card, Rate } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import "./RecomendedForYou.scss";
@@ -132,12 +132,14 @@ const RecomendedForYou = ({ courses }) => {
     ],
   };
 
+  const coursesList = useContext(courses)
+
   return (
     <div className="m-3">
       <h2 className="font-bold text-2xl mb-5 px-2">Recomended for you</h2>
 
       <Carousel {...setting} className="mb-10">
-        {courses.map((item) => {
+        {coursesList.map((item) => {
           const { maKhoaHoc, tenKhoaHoc, hinhAnh, luotXem, nguoiTao } = item;
           return (
             <Card

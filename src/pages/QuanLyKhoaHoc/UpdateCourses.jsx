@@ -1,37 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {DatePicker} from 'antd'
 import { useForm } from "react-hook-form";
+import { useLocation } from "react-router-dom";
 
 import { getLocalStore } from "../../utils/local";
 import { CoursesService } from "../../services/CoursesService";
-import { useRecoilValue } from "recoil";
-import { fetchCategoryRecoil } from "../../redux/recoil/categoryRecoil";
+import { useAllCategory } from "../../components/customCategoryHook";
 
-const AdminAddCourses = () => {
+import { useCourseById } from "../../components/customGetCourseById";
+
+
+const UpdateCourses = () => {
+    const location = useLocation().pathname.split("/")[3];
+    const courses  = useCourseById(location)
+
     const [imagePicker, setImagePicker] = useState()
     const [dateTimePicker,setDatetimePicker] = useState('')
     const user = getLocalStore('user_info')
-    const category = useRecoilValue(fetchCategoryRecoil)
+    const category = useAllCategory()
 
     const {register, handleSubmit, formState: {errors},setValue} = useForm(
         {
             defaultValues:{
-                maKhoaHoc: "",
-                biDanh: '',
-                tenKhoaHoc: '',
-                moTa: "",
-                luotXem: 0,
-                danhGia: 0,
-                hinhAnh: "",
+                maKhoaHoc: courses ? courses.maKhoaHoc : "",
+                biDanh: courses ? courses.biDanh : '',
+                tenKhoaHoc: courses ? courses.tenKhoaHoc: '',
+                moTa: courses ? courses.moTa : "",
+                luotXem: courses ? courses.luotXem : 0,
+                danhGia: courses ? courses.danhGia : 0,
+                hinhAnh: courses ? courses.hinhAnh : "",
                 maNhom: "GP01",
-                ngayTao: "",
-                maDanhMucKhoaHoc: "",
+                ngayTao: courses ? courses.ngayTao : "",
+                maDanhMucKhoaHoc: courses ? courses.maDanhMucKhoaHoc : "",
                 taiKhoanNguoiTao: user.taiKhoan
             }
         }
     )
     
-    const onSubmit = (data, {resetForm}) =>{
+    const onSubmit = (data) =>{
         data.hinhAnh = data.hinhAnh[0]
         data.ngayTao = dateTimePicker
         
@@ -44,26 +50,20 @@ const AdminAddCourses = () => {
             }
         }
 
-        CoursesService.addNewCourses(formDataSubmit)
-        .then((result) => {
-            CoursesService.uploadFileImageCourses(formDataSubmit)
-            .then((result) => {
-                console.log(result);
-            }).catch((err) => {
-                console.log(err);
-            });
-            console.log(result);
-            resetForm()
-        }).catch((err) => {
+        CoursesService.updateCurrentCourses(formDataSubmit)
+        .then(
+            (result) =>{
+                console.log(result)
+            }
+        ).catch((err) => {
             console.log(err)
         });
     }
 
-    return (
-      <div className="container mx-auto">
+  return (
+    <div className="container mx-auto">
         <div className="mb-10">
-          <h2 className="font-bold font-sans text-2xl ">Add new Course</h2>
-          <span className="font-normal text-base my-3 ">Share your knowledge for everyone</span>
+          <h2 className="font-bold font-sans text-2xl ">Update Current Course</h2>
         </div>
   
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -73,6 +73,7 @@ const AdminAddCourses = () => {
                         <div className="w-1/2">
                             <input
                             type="text"
+                            disabled
                             {...register('maKhoaHoc',{required: 'Course Code is required'})}
                             placeholder="Course Code"
                             className="font-normal text-base p-3 placeholder:font-bold outline-none border border-black w-full"
@@ -153,13 +154,13 @@ const AdminAddCourses = () => {
                 </li>
                 <li>
                     <button type="submit" className="bg-black text-base font-bold py-3 w-full text-white my-10">
-                        Submit
+                        Update this courses
                     </button>
                 </li>
             </ul>
         </form>
       </div>
-    );
+  )
 }
 
-export default AdminAddCourses
+export default UpdateCourses

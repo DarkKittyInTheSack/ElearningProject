@@ -1,31 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "antd";
 import { Link } from "react-router-dom";
-import { CoursesService } from "../../services/CoursesService";
-import {useDispatch, useSelector} from 'react-redux'
-import { fetchCourses } from "../../redux/reducer/userHomePageSlice";
 import { AdminCourseManagerService } from "../../services/AdminCourseManagerService";
+import { CoursesService } from "../../services/CoursesService";
 
+
+let input = ''
 const columns = [
     {
-      title: "Tên Khóa Học",
-      dataIndex: "tenKhoaHoc",
-      key: "tenKhoaHoc",
+      title: "Tài Khoản",
+      dataIndex: "taiKhoan",
+      key: "taiKhoan",
       render: (text) => <a>{text}</a>,
     },
     {
-      title: "Hình Ảnh",
-      dataIndex: "hinhAnh",
-      key: "hinhAnh",
-      render: (hinhAnh) => {
-        return <img src={hinhAnh} className="w-20" />;
-      },
+      title: "Họ tên",
+      dataIndex: "hoTen",
+      key: "hoTen",
+      render: (text) => <a>{text}</a>,
     },
     {
-      title: "Người Tạo",
+      title: "Bí danh",
       dataIndex: "nguoiTao",
       key: "nguoiTao",
-      render: (nguoiTao) => <p>{nguoiTao.hoTen}</p>,
+      render: (text) => <p>{text}</p>,
     },
   
     {
@@ -34,32 +32,27 @@ const columns = [
       render: (_, record) => (
         <div className="space-x-3">
           <button onClick={() =>{
-            CoursesService.deleteCourses(record.maKhoaHoc)
-            .then((result) => {
-  
+            CoursesService.RegisterStudent({
+              "maKhoaHoc": input,
+              "taiKhoan": record.taiKhoan
+            }).then((result) => {
+              window.location.href = 'http://localhost:3000/admin/qlgdkh'
             }).catch((err) => {
-  
+              console.log(err)
             });
-          }} className="text-white bg-red-600 py-2 px-4 rounded-md">
-            Xóa
+          }} className="text-white bg-green-500 py-2 px-4 rounded-md">
+            Ghi danh
           </button>
-          <Link className="text-white bg-yellow-600 py-2 px-4 rounded-md">
-            Sửa
-          </Link>
+
         </div>
       ),
     },
 ];
 
 const QuanLyGhiDanhKhoaHoc = () => {
-    const {courses} = useSelector((state) => state.userHomePageSlice)
-    const dispatch = useDispatch()
-  
-    const [coursesDisplay, setCoursesDisplay] = useState([]);
+    const [user,setUserList] = useState([])
   
     useEffect(() => {
-      dispatch(fetchCourses())
-      setCoursesDisplay(courses);
     }, []);
 
     return (
@@ -71,12 +64,13 @@ const QuanLyGhiDanhKhoaHoc = () => {
               id="moTa"
               name="moTa"
               onChange={(event) =>{
+                input = event.target.value
                 AdminCourseManagerService.getUserNotSubscribeCourses({
-                    MaKhoaHoc:event.target.value
+                    'MaKhoaHoc':event.target.value
                 }).then((result) => {
-                    console.log(result)
+                  setUserList(result.data)
                 }).catch((err) => {
-                    console.log(err)
+                    
                 });
               }}
               className="bg-gray-50 w-10/12 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 my-3 outline-none"
@@ -87,10 +81,10 @@ const QuanLyGhiDanhKhoaHoc = () => {
               Tìm kiếm
             </Link>
           </div>
-          {coursesDisplay.length > 0 ? (
+          {user.length > 0 ? (
             <Table
               columns={columns}
-              dataSource={coursesDisplay}
+              dataSource={user}
               pagination={{
                 pageSize: 10,
               }}
@@ -98,7 +92,7 @@ const QuanLyGhiDanhKhoaHoc = () => {
           ) : (
             <Table
               columns={columns}
-              dataSource={courses}
+              dataSource={user}
               pagination={{
                 pageSize: 10,
               }}

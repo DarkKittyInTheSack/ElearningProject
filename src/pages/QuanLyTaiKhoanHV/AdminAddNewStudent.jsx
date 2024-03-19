@@ -22,9 +22,9 @@ const AdminAddNewStudent = () => {
         UserService.addNewUser(data)
         .then((result) => {
 
-            window.location.href = 'http://localhost:3000/admin/qlgv'
+            window.location.href = 'http://localhost:3000/admin/qlhv'
         }).catch((err) => {
-
+            console.log(err);
         });
     }
 
