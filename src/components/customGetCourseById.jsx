@@ -8,7 +8,12 @@ export function useCourseById(id){
 
     useEffect(() =>{
         dispatch(getDataThunk(id))
-    },[])
+    },[id])
 
-    return courses
+    if(courses){
+        return courses
+    }else{
+        return undefined
+    }
+    
 }

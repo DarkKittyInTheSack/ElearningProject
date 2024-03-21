@@ -1,5 +1,5 @@
 import React from 'react'
-import { Carousel,Card,Rate } from 'antd'
+import { Card,Rate } from 'antd'
 import { getLocalStore } from "../../utils/local";
 import { useRecoilValue } from 'recoil';
 import { fetchSubcriptionRecoil } from '../../redux/recoil/subscriptionListRecoil';
@@ -17,9 +17,10 @@ const PublicProfileView = () => {
         <div className="bg-gray-100 py-5">
             <div className="container mx-auto">
                 <h2 className='font-bold text-lg text-center'>Course You're enroled in</h2>
-                <div className="grid grid-cols-4 items-center my-6">
+                {
+                    subscribeCourses ? <div className="grid grid-cols-4 items-center my-6">
                     {
-                        subscribeCourses ? subscribeCourses.map(item =>{
+                        subscribeCourses.map(item =>{
                             const {maKhoaHoc,tenKhoaHoc,nguoiTao,hinhAnh,ngayTao,luotXem} = item
                             return <Card cover={<img src={hinhAnh}/>} className='rounded-none border-none bg-transparent' key={maKhoaHoc}>
                             <Link to={`/detail/${maKhoaHoc}`} className='font-bold text-sm line-clamp-2 leading-4'>{tenKhoaHoc}</Link>
@@ -33,9 +34,11 @@ const PublicProfileView = () => {
                                 <span className='font-bold text-base'>₫279,000</span>
                             </div>
                         </Card>
-                        }) : <EmptyMyLearning/>
+                        })
                     }
-                </div>
+                </div> : <EmptyMyLearning/>
+                }
+                
             </div>
         </div>
     </div>

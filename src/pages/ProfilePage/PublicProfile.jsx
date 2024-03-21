@@ -82,7 +82,18 @@ const PublicProfile = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
               <input
                 type="text"
-                {...register("hoTen", { required: "Full Name is required" })}
+                {...register("hoTen", {
+                  required: "Full Name is required",
+                  maxLength: {
+                    value: 50,
+                    message:
+                      "Full name max characters is out of range (50 characters)",
+                  },
+                  minLength: {
+                    value: 10,
+                    message: "Full name characters minimum is not reach (10 characters)",
+                  },
+                })}
                 className="border border-black w-full p-3 font-normal outline-none my-2"
                 placeholder="Full Name"
               />
@@ -100,7 +111,11 @@ const PublicProfile = () => {
 
               <input
                 type="text"
-                {...register("soDT", { required: "Phone Number is required" })}
+                {...register("soDT", { required: "Phone Number is required",
+                    pattern:{
+                      value:/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
+                      message:'Phone number is not valid'
+                    } })}
                 className="border border-black w-full p-3 font-normal outline-none my-2"
                 placeholder="Phone Number"
               />

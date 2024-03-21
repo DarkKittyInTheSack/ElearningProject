@@ -63,7 +63,7 @@ const CourseDetail = () => {
     <div>
       <div className="bg-slate-800">
         <div className="container mx-auto ">
-          <CourseOveral courses={courses} />
+          <CourseOveral courses={courses} code={courses.maKhoaHoc}/>
           <div className="w-1/4 fixed top-36 right-32" id="fixedScroll">
             <CourseRightColumn
               image={courses.hinhAnh}

@@ -1,8 +1,81 @@
-import React from "react";
+import React, { useState } from "react";
 import { Rate } from "antd";
 import { Link } from "react-router-dom";
+import { CoursesService } from "../../services/CoursesService";
+import { getLocalStore } from "../../utils/local";
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  fetchSubcriptionRecoil,
+  subscriptionListRecoil,
+} from "../../redux/recoil/subscriptionListRecoil";
+import {
+  fetchWishlistRecoil,
+  wishlistCoursesRecoil,
+} from "../../redux/recoil/wishlistCoursesRecoil";
 
-const CourseOveral = ({ courses }) => {
+const CourseOveral = ({ courses, code }) => {
+  const user = getLocalStore("user_info");
+  const [successData, setSuccessData] = useState("");
+  const [failData, setFailData] = useState("");
+  const [_, setSubscriptionList] = useRecoilState(subscriptionListRecoil);
+  const [currentWishlist, setWishlist] = useRecoilState(wishlistCoursesRecoil);
+  const wishlist = useRecoilValue(fetchWishlistRecoil);
+  const subscriptionList = useRecoilValue(fetchSubcriptionRecoil);
+  let list = [];
+
+  const subscribeCourse = (user, code) => {
+    if (user != null) {
+      CoursesService.subscribeCourse({
+        maKhoaHoc: String(code),
+        taiKhoan: user.taiKhoan,
+      })
+        .then((result) => {
+          document.getElementById("successNotification").style.display =
+            "block";
+          document.getElementById("failNotification").style.display = "none";
+          list.push(courses);
+          if (subscriptionList.length == 0) {
+            setSubscriptionList(() => list);
+          } else {
+            setSubscriptionList((current) => current.concat(list));
+          }
+
+          setFailData("");
+          setSuccessData("You has been subscribe this courses");
+        })
+        .catch((err) => {
+          console.log(err);
+          document.getElementById("successNotification").style.display = "none";
+          document.getElementById("failNotification").style.display = "block";
+
+          setFailData("Sorry, maybe you has been subscribe this before");
+          setSuccessData("");
+        });
+    } else {
+      window.location.href = "http://localhost:3000/login";
+    }
+  };
+
+  const addToWishlist = (courses) => {
+    let list = [];
+    if (wishlist.length == 0) {
+      list.push(courses);
+      setWishlist(() => list);
+
+      document.getElementById("successNotification").style.display = "block";
+      document.getElementById("failNotification").style.display = "none";
+
+      setSuccessData("This courses has been add to your wishlist");
+    } else {
+      list.push(courses);
+      setWishlist((current) => current.concat(list));
+
+      document.getElementById("successNotification").style.display = "block";
+      document.getElementById("failNotification").style.display = "none";
+
+      setSuccessData("This courses has been add to your wishlist");
+    }
+  };
 
   return (
     <div className="mx-5 p-5 text-white relative">
@@ -68,8 +141,13 @@ const CourseOveral = ({ courses }) => {
         </li>
         <li>
           <div className="flex items-center my-2">
-            <button className="text-lg px-10 bg-purple-500 border border-purple-500 text-white py-3 sm:w-full">
-              Add to cart
+            <button
+              onClick={() => {
+                subscribeCourse(user, code);
+              }}
+              className="text-lg px-10 bg-purple-500 border border-purple-500 text-white py-3 sm:w-full"
+            >
+              Subscription
             </button>
             <button>
               <i className="fa-regular fa-heart text-lg py-3 px-4 text-center ml-2 border bg-black border-black"></i>
@@ -77,9 +155,26 @@ const CourseOveral = ({ courses }) => {
           </div>
         </li>
         <li>
-          <button className="w-full px-20 text-lg border border-black bg-black py-3">
-            Buy Now
+          <button
+            onClick={() => {
+              addToWishlist(courses);
+            }}
+            className="w-full px-20 text-lg border border-black bg-black py-3"
+          >
+            Add to Wishlist
           </button>
+          <span
+            id="successNotification"
+            className="font-normal text-green-600 w-full text-center text-sm inline-block hidden"
+          >
+            {successData}
+          </span>
+          <span
+            id="failNotification"
+            className="font-normal text-red-600 w-full text-center text-sm inline-block hidden"
+          >
+            {failData}
+          </span>
         </li>
       </ul>
     </div>

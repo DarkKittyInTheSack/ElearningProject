@@ -16,6 +16,59 @@ const CourseRightColumn = ({ image, code,courses }) => {
   const wishlist = useRecoilValue(fetchWishlistRecoil)
   const subscriptionList = useRecoilValue(fetchSubcriptionRecoil)
   let list = []
+
+  const subscribeCourse = (user,code) =>{
+    if(user!= null){
+      CoursesService.subscribeCourse({
+        "maKhoaHoc": String(code),
+        "taiKhoan": user.taiKhoan
+      }).then((result) => {
+        document.getElementById('successNotification').style.display = 'block'
+        document.getElementById('failNotification').style.display = 'none'
+        list.push(courses)
+        if(subscriptionList.length == 0){
+          setSubscriptionList(() => list)
+        }else{
+          setSubscriptionList((current) => current.concat(list))
+        }
+
+        setFailData('')
+        setSuccessData('You has been subscribe this courses')
+
+      }).catch((err) => {
+        console.log(err)
+        document.getElementById('successNotification').style.display = 'none'
+        document.getElementById('failNotification').style.display = 'block'
+        
+        setFailData('Sorry, maybe you has been subscribe this before')
+        setSuccessData('')
+      });
+    }else{
+      window.location.href = 'http://localhost:3000/login'
+    }
+  }
+
+  const addToWishlist = (courses) =>{
+    let list = []
+              if(wishlist.length == 0){
+                list.push(courses)
+                setWishlist(() =>list)
+
+                document.getElementById('successNotification').style.display = 'block'
+                document.getElementById('failNotification').style.display = 'none'
+
+                setSuccessData('This courses has been add to your wishlist')
+              }else{
+                list.push(courses)
+                setWishlist((current) =>current.concat(list))
+
+                document.getElementById('successNotification').style.display = 'block'
+                document.getElementById('failNotification').style.display = 'none'
+
+                setSuccessData('This courses has been add to your wishlist')
+              }
+  }
+
   return (
     <div className=" bg-white course_right_column md:block sm:hidden">
       <div className="max-h-80 max-w-80 mx-auto mt-5 py-5 overflow-hidden object-cover">
@@ -35,58 +88,14 @@ const CourseRightColumn = ({ image, code,courses }) => {
           <div className="flex items-center my-2">
             {
               subscriptionList.find(item => item.maKhoaHoc === code) ? <button className="text-lg w-full bg-purple-500 border border-purple-500 text-white py-3">Already Subscribe</button> : <button type="button" onClick={() =>{
-                if(user!= null){
-                  CoursesService.subscribeCourse({
-                    "maKhoaHoc": String(code),
-                    "taiKhoan": user.taiKhoan
-                  }).then((result) => {
-                    document.getElementById('successNotification').style.display = 'block'
-                    document.getElementById('failNotification').style.display = 'none'
-                    list.push(courses)
-                    if(subscriptionList.length == 0){
-                      setSubscriptionList(() => list)
-                    }else{
-                      setSubscriptionList((current) => current.concat(list))
-                    }
-  
-                    setFailData('')
-                    setSuccessData('You has been subscribe this courses')
-  
-                  }).catch((err) => {
-                    console.log(err)
-                    document.getElementById('successNotification').style.display = 'none'
-                    document.getElementById('failNotification').style.display = 'block'
-                    
-                    setFailData('Sorry, maybe you has been subscribe this before')
-                    setSuccessData('')
-                  });
-                }else{
-                  window.location.href = 'http://localhost:3000/login'
-                }
+                subscribeCourse(user,code)
               }} className="text-lg w-full bg-purple-500 border border-purple-500 text-white py-3">
                   Subscribe
                 </button>
             }
             
             <button onClick={() =>{
-              let list = []
-              if(wishlist.length == 0){
-                list.push(courses)
-                setWishlist(() =>list)
-
-                document.getElementById('successNotification').style.display = 'block'
-                document.getElementById('failNotification').style.display = 'none'
-
-                setSuccessData('This courses has been add to your wishlist')
-              }else{
-                list.push(courses)
-                setWishlist((current) =>current.concat(list))
-
-                document.getElementById('successNotification').style.display = 'block'
-                document.getElementById('failNotification').style.display = 'none'
-
-                setSuccessData('This courses has been add to your wishlist')
-              }
+              addToWishlist(courses)
             }}>
               <i className="fa-regular fa-heart text-lg py-3 px-4 text-center ml-2 border border-black hover:bg-gray-100 duration-500"></i>
             </button>

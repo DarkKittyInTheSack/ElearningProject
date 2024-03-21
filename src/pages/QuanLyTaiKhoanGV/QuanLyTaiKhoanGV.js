@@ -45,11 +45,11 @@ const columns = [
           >
             Xóa
           </button>
-          <Link to={`/admin/updateTeacher/${record.taiKhoan}`}
+          <a href={`/admin/updateTeacher/${record.taiKhoan}`}
             className="text-white bg-yellow-600 py-2 px-4 rounded-md"
           >
             Sửa
-          </Link>
+          </a>
       </div>
     ),
   },
@@ -82,7 +82,15 @@ const QuanLyTaiKhoanGV = () => {
 
         <Link to={'/admin/addNewTeacher'} className="px-3 py-2 bg-black rounded text-white font-bold">Thêm giáo viên</Link>
       </div>
-      {
+      <Table
+            columns={columns}
+            dataSource={userListFilter}
+            pagination={{
+              pageSize: 10,
+  
+            }}
+          />
+      {/* {
           userListFilter.length > 0 ? (<Table
             columns={columns}
             dataSource={userListFilter}
@@ -98,7 +106,7 @@ const QuanLyTaiKhoanGV = () => {
   
             }}
           />)
-        }
+        } */}
     </div>
   );
 };

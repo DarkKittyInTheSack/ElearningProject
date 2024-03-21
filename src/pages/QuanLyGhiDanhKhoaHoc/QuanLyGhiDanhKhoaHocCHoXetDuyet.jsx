@@ -85,13 +85,6 @@ const QuanLyGhiDanhKhoaHocCHoXetDuyet = () => {
               });
           }}
         />
-
-        <Link
-          to={"/admin/addCourses"}
-          className="py-2 px-3 bg-black font-bold text-base text-white rounded"
-        >
-          Tìm kiếm
-        </Link>
       </div>
       {course.length > 0 ? (
         <Table

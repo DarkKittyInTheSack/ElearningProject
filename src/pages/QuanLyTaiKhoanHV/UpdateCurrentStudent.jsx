@@ -31,7 +31,6 @@ const UpdateCurrentStudent = () => {
           maNhom: "GP01",
           email: user.email,
         },
-    mode: "onChange",
   });
 
   const onSubmit = (data, { resetForm }) => {
@@ -56,9 +55,7 @@ const UpdateCurrentStudent = () => {
             disabled
             className="font-bold text-base p-3 border border-black w-full"
             placeholder="Student Account"
-            {...register("taiKhoan", {
-              required: "Student Account is required",
-            })}
+            {...register("taiKhoan")}
           />
           <ErrorMessage
             errors={errors}
@@ -78,6 +75,7 @@ const UpdateCurrentStudent = () => {
             placeholder="Student Fullname"
             {...register("hoTen", { required: "Student Fullname is required",
             })}
+            defaultValue={user.hoTen}
           />
           <ErrorMessage
             errors={errors}
@@ -102,6 +100,7 @@ const UpdateCurrentStudent = () => {
                 message: "Student Phone number is not valid"
               }
             })}
+            defaultValue={user.soDt}
           />
           <ErrorMessage
             errors={errors}
@@ -127,6 +126,7 @@ const UpdateCurrentStudent = () => {
                 message: "Email is not valid !!!",
               },
             })}
+            defaultValue={user.email}
           />
 
           <ErrorMessage

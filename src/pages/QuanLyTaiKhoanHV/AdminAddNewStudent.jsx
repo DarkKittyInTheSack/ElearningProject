@@ -54,7 +54,13 @@ const AdminAddNewStudent = () => {
                 type="password"
                 className='font-bold text-base p-3 border border-black w-full'
                 placeholder='Student Password'
-                {...register('matKhau',{required: 'Student Password is required'})}
+                {...register('matKhau',{required: 'Student Password is required', maxLength: {
+                    value:20,
+                    message: 'Password max character is 20'
+                },minLength:{
+                    value:6,
+                    message: 'Password min character is 6'
+                }})}
                  />
             <ErrorMessage
             errors={errors}
@@ -70,7 +76,13 @@ const AdminAddNewStudent = () => {
                 type="text"
                 className='font-bold text-base p-3 border border-black w-full'
                 placeholder='Student Fullname'
-                {...register('hoTen',{required: 'Student Fullname is required'})}
+                {...register('hoTen',{required: 'Student Fullname is required', maxLength: {
+                    value:50,
+                    message: 'Password max character is 50'
+                },minLength:{
+                    value:10,
+                    message: 'Password min character is 10'
+                }})}
                  />
             <ErrorMessage
             errors={errors}

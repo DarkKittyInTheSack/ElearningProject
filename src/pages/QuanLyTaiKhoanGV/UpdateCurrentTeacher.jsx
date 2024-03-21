@@ -25,7 +25,7 @@ const UpdateCurrentTeacher = () => {
     } = useForm({
       defaultValues: {
             taiKhoan: location,
-            hoTen: user.hoTen ? user.hoTen : "",
+            hoTen: user.hoTen,
             soDT: user.soDt,
             maLoaiNguoiDung: "GV",
             maNhom: "GP01",
@@ -35,13 +35,15 @@ const UpdateCurrentTeacher = () => {
     });
   
     const onSubmit = (data, { resetForm }) => {
+      console.log(data);
+      data.taiKhoan.replaceAll('%20',' ')
       UserService.updateUser(data)
         .then((result) => {
 
           window.location.href = "http://localhost:3000/admin/qlhv";
         })
         .catch((err) => {
-
+          console.log(err)
         });
     };
   
@@ -56,9 +58,7 @@ const UpdateCurrentTeacher = () => {
               disabled
               className="font-bold text-base p-3 border border-black w-full"
               placeholder="Teacher Account"
-              {...register("taiKhoan", {
-                required: "teacher Account is required",
-              })}
+              {...register("taiKhoan")}
             />
             <ErrorMessage
               errors={errors}
@@ -78,6 +78,7 @@ const UpdateCurrentTeacher = () => {
               placeholder="Teacher Fullname"
               {...register("hoTen", { required: "Teacher Fullname is required",
               })}
+              defaultValue={user.hoTen}
             />
             <ErrorMessage
               errors={errors}
@@ -102,6 +103,7 @@ const UpdateCurrentTeacher = () => {
                   message: "Teacher Phone number is not valid"
                 }
               })}
+              defaultValue={user.soDt}
             />
             <ErrorMessage
               errors={errors}
@@ -127,6 +129,7 @@ const UpdateCurrentTeacher = () => {
                   message: "Email is not valid !!!",
                 },
               })}
+              defaultValue={user.email}
             />
   
             <ErrorMessage

@@ -42,9 +42,9 @@ const columns = [
         >
           Xóa
         </button>
-        <Link to={`/admin/updateCourses/${record.maKhoaHoc}`} className="text-white bg-yellow-600 py-2 px-4 rounded-md">
+        <a href={`/admin/updateCourses/${record.maKhoaHoc}`} className="text-white bg-yellow-600 py-2 px-4 rounded-md">
           Sửa
-        </Link>
+        </a>
       </div>
     ),
   },

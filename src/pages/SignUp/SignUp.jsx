@@ -2,10 +2,10 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
-import { saveLocalStore } from "../../utils/local";
+
 import { message } from "antd";
 import { signUp } from "../../services/signUp";
-import { addLoginUserData } from "../../utils/localStorageLogin";
+
 const SignUp = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
@@ -24,11 +24,15 @@ const SignUp = () => {
         signUp
           .SignUp(values)
           .then((res) => {
+            messageApi.open({
+              type: "success",
+              content: "Register Sucessful",
+            });
             resetForm();
 
           })
           .catch((err) => {
-
+              message.error(err.response.data)
           });
       },
       validationSchema: Yup.object({

@@ -76,10 +76,6 @@ const QuanLyGhiDanhKhoaHoc = () => {
               className="bg-gray-50 w-10/12 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 my-3 outline-none"
               placeholder="Nhập khóa học bạn muốn tìm kiếm"
             />
-    
-            <Link to={'/admin/addCourses'} className="py-2 px-3 bg-black font-bold text-base text-white rounded">
-              Tìm kiếm
-            </Link>
           </div>
           {user.length > 0 ? (
             <Table
