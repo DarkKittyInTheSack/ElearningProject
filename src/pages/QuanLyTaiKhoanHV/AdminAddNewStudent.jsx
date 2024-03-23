@@ -78,10 +78,13 @@ const AdminAddNewStudent = () => {
                 placeholder='Student Fullname'
                 {...register('hoTen',{required: 'Student Fullname is required', maxLength: {
                     value:50,
-                    message: 'Password max character is 50'
+                    message: 'User Fullname max character is 50'
                 },minLength:{
                     value:10,
-                    message: 'Password min character is 10'
+                    message: 'User Fullname min character is 10'
+                }, pattern:{
+                    value: /^[^*|\":<>[\]{}`\\()'!;@&$]+$/,
+                    message:'User Fullname not contain any special characters! '
                 }})}
                  />
             <ErrorMessage
@@ -100,7 +103,7 @@ const AdminAddNewStudent = () => {
                 placeholder='Student Phone Number'
                 {...register('soDT',{required: 'Student Phone Number is required',
                     pattern:{
-                        value: /^[0-9\+]{1,}[0-9\-]{3,15}$/,
+                        value: /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
                         message: "Student Phone number is not valid"
                     }})}
                  />

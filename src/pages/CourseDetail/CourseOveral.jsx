@@ -145,36 +145,37 @@ const CourseOveral = ({ courses, code }) => {
               onClick={() => {
                 subscribeCourse(user, code);
               }}
-              className="text-lg px-10 bg-purple-500 border border-purple-500 text-white py-3 sm:w-full"
+              className="text-lg px-10 bg-purple-500 border border-purple-500 text-white py-3 sm:w-full w-full"
             >
               Subscription
             </button>
-            <button>
+            <button onClick={() => {
+              addToWishlist(courses);
+            }}>
               <i className="fa-regular fa-heart text-lg py-3 px-4 text-center ml-2 border bg-black border-black"></i>
             </button>
           </div>
         </li>
         <li>
           <button
-            onClick={() => {
-              addToWishlist(courses);
-            }}
             className="w-full px-20 text-lg border border-black bg-black py-3"
           >
-            Add to Wishlist
+            Buy now
           </button>
-          <span
-            id="successNotification"
-            className="font-normal text-green-600 w-full text-center text-sm inline-block hidden"
-          >
-            {successData}
-          </span>
-          <span
-            id="failNotification"
-            className="font-normal text-red-600 w-full text-center text-sm inline-block hidden"
-          >
-            {failData}
-          </span>
+          <div className="my-3">
+            <span
+              id="successNotification"
+              className="font-normal text-green-600 w-full text-center text-sm inline-block hidden"
+            >
+              {successData}
+            </span>
+            <span
+              id="failNotification"
+              className="font-normal text-red-600 w-full text-center text-sm inline-block hidden"
+            >
+              {failData}
+            </span>
+          </div>
         </li>
       </ul>
     </div>

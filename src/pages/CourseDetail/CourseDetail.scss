@@ -1,0 +1,15 @@
+#fixedScroll{
+    @media screen and (max-width:638px) {
+        display: none;
+    }
+}
+
+#what_you_learn{
+    @media screen and (max-width:638px) {
+        .item{
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+        }
+        
+    }
+}

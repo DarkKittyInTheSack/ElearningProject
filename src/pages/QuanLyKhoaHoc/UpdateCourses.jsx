@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DatePicker } from "antd";
 import { useForm } from "react-hook-form";
 import { useLocation } from "react-router-dom";
@@ -21,24 +21,26 @@ const UpdateCourses = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
     setValue,
-  } = useForm({
-    defaultValues: {
-      maKhoaHoc: courses ? courses.maKhoaHoc : "",
-      biDanh: courses ? courses.biDanh : "",
-      tenKhoaHoc: courses ? courses.tenKhoaHoc : "",
-      moTa: courses ? courses.moTa : "",
-      luotXem: courses? courses.luotXem : '',
-      danhGia: courses? courses.danhGia : '',
-      hinhAnh: courses? courses.hinhAnh: '',
-      maNhom: "GP01",
-      ngayTao: courses? courses.ngayTao : '',
-      maDanhMucKhoaHoc: courses ? courses.danhMucKhoaHoc : "",
-      taiKhoanNguoiTao: user.taiKhoan,
-    },
-    mode: "onChange",
-  });
+  } = useForm();
+
+  useEffect(() =>{
+    let defaultValues = {}
+    defaultValues.maKhoaHoc = location
+    defaultValues.biDanh = courses.biDanh
+    defaultValues.tenKhoaHoc = courses.tenKhoaHoc
+    defaultValues.moTa = courses.moTa
+    defaultValues.luotXem = courses.luotXem
+    defaultValues.danhGia = courses ? courses.danhGia : 0
+    defaultValues.hinhAnh = courses.hinhAnh
+    defaultValues.maNhom = "GP01"
+    defaultValues.ngayTao = courses.ngayTao
+    defaultValues.maDanhMucKhoaHoc = courses.danhMucKhoaHoc
+    defaultValues.taiKhoanNguoiTao = user.taiKhoan
+    reset({...defaultValues})
+  },[])
 
   const onSubmit = (data) => {
     data.hinhAnh = data.hinhAnh[0];
@@ -48,10 +50,16 @@ const UpdateCourses = () => {
     for (let key in data) {
       if (key === "hinhAnh") {
         formDataSubmit.append("File", data[key]);
-      } else {
+      }
+      if (key === "danhGia"){
+        formDataSubmit.append(key,0);
+      }
+       else {
         formDataSubmit.append(key, data[key]);
       }
     }
+
+    console.log(data);
 
     CoursesService.updateCurrentCourses(formDataSubmit)
       .then((result) => {
@@ -79,7 +87,24 @@ const UpdateCourses = () => {
                   {...register("maKhoaHoc")}
                   placeholder="Course Code"
                   className="font-normal text-base p-3 placeholder:font-bold outline-none border border-black w-full"
-                  value={courses.maKhoaHoc}
+                />
+
+<input
+                  type="text"
+                  disabled
+                  {...register("luotXem")}
+                  placeholder="Course Code"
+                  className="hidden font-normal text-base p-3 placeholder:font-bold outline-none border border-black w-full"
+                  value={courses.luotXem}
+                />
+
+<input
+                  type="text"
+                  disabled
+                  {...register("danhGia")}
+                  placeholder="Course Code"
+                  className="hidden font-normal text-base p-3 placeholder:font-bold outline-none border border-black w-full"
+                  value={courses.luotXem}
                 />
               </div>
 
@@ -118,9 +143,8 @@ const UpdateCourses = () => {
           </li>
           <li>
             <select
-              {...register("maDanhMucKhoaHoc", "Course Category is required")}
+              {...register("maDanhMucKhoaHoc", {required: 'Course Category is required'})}
               className="font-bold text-base p-3 placeholder:font-bold outline-none border border-black w-full"
-              defaultValue={courses ? courses.maDanhMucKhoaHoc : ''}
             >
               {category
                 ? category.map((item) => {

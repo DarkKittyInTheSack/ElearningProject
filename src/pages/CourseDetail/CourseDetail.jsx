@@ -11,6 +11,7 @@ import CourseRating from "./CourseRating";
 import RelativeCourse from "./RelativeCourse";
 import CourseRightColumn from "./CourseRightColumn";
 import { useCourseById } from "../../components/customGetCourseById";
+import './CourseDetail.scss'
 
 const CourseDetail = () => {
   const location = useLocation().pathname.split("/")[2];
