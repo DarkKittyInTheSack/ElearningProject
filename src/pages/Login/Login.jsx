@@ -18,7 +18,7 @@ const Login = () => {
         matKhau: "",
       },
       onSubmit: (values) => {
-        saveLocalStore(values.matKhau,'password')
+        saveLocalStore(values.matKhau, "password");
         userLogin
           .loginServ(values)
           .then((res) => {
@@ -33,7 +33,6 @@ const Login = () => {
             }, 1000);
           })
           .catch((err) => {
-
             message.error(err.response.data);
           });
       },
@@ -48,13 +47,11 @@ const Login = () => {
       {contextHolder}
       <div className="container mx-auto">
         <div className="col_right md:mx-4 sm:mx-5 sm:my-3">
-          <h2 className="font-bold text-3xl block sm:text-center ">
-            Login
-          </h2>
+          <h2 className="font-bold text-3xl block sm:text-center ">Login</h2>
           <div className="flex justify-center items-center mt-5">
             <Link
               to={
-                "https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?gsiwebsdk=3&client_id=700206021005-as1l679sch207mp70msgjhma1krf3k9q.apps.googleusercontent.com&scope=email%20profile&redirect_uri=storagerelay%3A%2F%2Fhttps%2Fwww.udemy.com%3Fid%3Dauth863183&prompt=consent&access_type=offline&response_type=code&include_granted_scopes=true&enable_granular_consent=true&service=lso&o2v=2&theme=glif&flowName=GeneralOAuthFlow"
+                "https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?gsiwebsdk=3&client_id=700206021005-as1l679sch207mp70msgjhma1krf3k9q.apps.googleusercontent.com&scope=email%20profile&redirect_uri=storagerelay%3A%2F%2Fhttps%2Fwww.learnit.com%3Fid%3Dauth863183&prompt=consent&access_type=offline&response_type=code&include_granted_scopes=true&enable_granular_consent=true&service=lso&o2v=2&theme=glif&flowName=GeneralOAuthFlow"
               }
               className="text-base bg-gray-50 border border-black block md:w-1/3 sm:w-full p-4 font-medium "
             >
@@ -125,7 +122,10 @@ const Login = () => {
               </button>
             </div>
           </form>
-          <Link to={'/signup'} className=" text-black text-center text-2xl my-4 mx-auto font-bold bg-white border border-black block md:w-1/3 sm:w-full p-4">
+          <Link
+            to={"/signup"}
+            className=" text-black text-center text-2xl my-4 mx-auto font-bold bg-white border border-black block md:w-1/3 sm:w-full p-4"
+          >
             To Sign Up page
           </Link>
         </div>

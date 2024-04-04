@@ -115,7 +115,7 @@ const Banner = () => {
             <span className="font-medium md:text-base sm:text-sm block md:mb-4 sm:mb-1">
               Try learning just 5-10 minutes a day.
               <u className="text-blue-700">
-                Continue your <br className="md:block sm:hidden"/> course
+                Continue your <br className="md:block sm:hidden" /> course
               </u>{" "}
               and reach your peak potential.
             </span>

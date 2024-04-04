@@ -8,9 +8,9 @@ const Subcriptions = () => {
         Subcriptions
       </h2>
       <span className="font-normal text-lg">
-        Manage your Udemy subcriptions
+        Manage your learnit subcriptions
       </span>
-      <EmptyProfile/>
+      <EmptyProfile />
     </div>
   );
 };

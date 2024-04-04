@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -7,31 +7,31 @@ const Footer = () => {
       <div className="md:flex px-5 py-4 justify-between md:items-center border-b border-b-gray-600 ">
         <h2 className="px-5  font-bold text-xl">
           Top companies choose{" "}
-          <span className="text-purple-300">Udemy Business</span> to build
+          <span className="text-purple-300">learnit Business</span> to build
           in-demand career skills
         </h2>
         <ul className="md:flex md:space-y-0 space-x-4 items-center px-5 sm:grid sm:grid-cols-4 sm:space-y-2">
           <li>
             <img
-              src="https://s.udemycdn.com/partner-logos/v4/volkswagen-light.svg"
+              src="https://s.learnitcdn.com/partner-logos/v4/volkswagen-light.svg"
               alt="#"
             />
           </li>
           <li>
             <img
-              src="https://s.udemycdn.com/partner-logos/v4/box-light.svg"
+              src="https://s.learnitcdn.com/partner-logos/v4/box-light.svg"
               alt="#"
             />
           </li>
           <li>
             <img
-              src="https://s.udemycdn.com/partner-logos/v4/netapp-light.svg"
+              src="https://s.learnitcdn.com/partner-logos/v4/netapp-light.svg"
               alt="#"
             />
           </li>
           <li>
             <img
-              src="https://s.udemycdn.com/partner-logos/v4/eventbrite-light.svg"
+              src="https://s.learnitcdn.com/partner-logos/v4/eventbrite-light.svg"
               alt="#"
             />
           </li>
@@ -42,17 +42,17 @@ const Footer = () => {
           <ul className="space-y-2 items-center font-medium text-sm">
             <li>
               <Link to={"/business"} className="hover:underline duration-500">
-                Udemy Business
+                learnit Business
               </Link>
             </li>
             <li>
               <Link to={"/teacher"} className="hover:underline duration-500">
-                Teach on Udemy
+                Teach With Us
               </Link>
             </li>
             <li>
               <Link
-                to={"https://www.udemy.com/mobile/"}
+                to={"https://www.learnit.com/mobile/"}
                 className="hover:underline duration-500"
               >
                 Get the app
@@ -123,17 +123,17 @@ const Footer = () => {
         <div className="p-5">
           <Link to={"/"} className="px-5 py-3 w-20 outline-none">
             <img
-              src="https://www.udemy.com/staticx/udemy/images/v7/logo-udemy-inverted.svg"
+              src="../../../public/logoApp.png"
               className="w-24 inline-block"
             />
           </Link>
         </div>
         <div className="p-5">
-          <p className="font-medium text-sm px-5">&#169; 2024 Udemy, Inc</p>
+          <p className="font-medium text-sm px-5">&#169; 2024 learnit, Inc</p>
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

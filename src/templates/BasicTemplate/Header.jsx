@@ -24,8 +24,12 @@ const Header = () => {
   const [searchData, setSearchData] = useState([]);
   const [keyData, setKeyData] = useState("");
   const [pageData, setPageData] = useState(1);
-  const [clearSubscription,setClearLogoutData] = useRecoilState(subscriptionListRecoil)
-  const [clearWishlist,setClearWishlistData] = useRecoilState(wishlistCoursesRecoil)
+  const [clearSubscription, setClearLogoutData] = useRecoilState(
+    subscriptionListRecoil
+  );
+  const [clearWishlist, setClearWishlistData] = useRecoilState(
+    wishlistCoursesRecoil
+  );
 
   const { user } = useSelector((state) => state.userSlice);
   const renderUser = () => {
@@ -40,18 +44,24 @@ const Header = () => {
               {user.taiKhoan.split("").slice(0, 1)}
             </Link>
 
-            <Link to={'/login'} onClick={() =>{
-              removeFromLocalStorage('user_info')
-              removeFromLocalStorage('password')
+            <Link
+              to={"/login"}
+              onClick={() => {
+                removeFromLocalStorage("user_info");
+                removeFromLocalStorage("password");
 
-              setClearLogoutData((current) => {current = []})
-              setClearWishlistData((current) => {current = []})
-              
-            }} className="mx-0 text-sm text-center border border-black border-t-2 border-b-2 border-l-2 border-r-2 font-medium px-3 py-2 hover:bg-gray-100 duration-300">
+                setClearLogoutData((current) => {
+                  current = [];
+                });
+                setClearWishlistData((current) => {
+                  current = [];
+                });
+              }}
+              className="mx-0 text-sm text-center border border-black border-t-2 border-b-2 border-l-2 border-r-2 font-medium px-3 py-2 hover:bg-gray-100 duration-300"
+            >
               <i className="fa-solid fa-arrow-right-from-bracket"></i>
             </Link>
           </div>
-          
         </>
       );
     } else {
@@ -75,7 +85,6 @@ const Header = () => {
               <i className="fa-solid fa-globe"></i>
             </button>
           </div>
-          
         </>
       );
     }
@@ -90,14 +99,12 @@ const Header = () => {
       .then((result) => {
         setSearchData(result.data.items);
       })
-      .catch((err) => {
-
-      });
+      .catch((err) => {});
   };
 
-  const handleSearchProgress = debounce((key,page) =>{
-    setPagingData(key,page,3)
-  },100)
+  const handleSearchProgress = debounce((key, page) => {
+    setPagingData(key, page, 3);
+  }, 100);
 
   useSignalEffect(() => {
     dispatch(fetchCoursesCategory());
@@ -110,7 +117,7 @@ const Header = () => {
           <div className="md:flex md:items-center md:mr-3 sm:grid sm:grid-cols-2 header_nav_logo">
             <Link to={"/"} className="px-3 py-2 w-28 outline-none">
               <img
-                src="https://www.udemy.com/staticx/udemy/images/v7/logo-udemy.svg"
+                src="../../../public/logoApp.png"
                 className="w-full block"
               />
             </Link>
@@ -153,13 +160,12 @@ const Header = () => {
                 const btn_list = document.getElementById("btn_list");
 
                 if (!isResponsive.u) {
-                  
-                  btn_list.style.transition = 'all 0.5s'
+                  btn_list.style.transition = "all 0.5s";
                   isResponsive.u = true;
                 } else {
-                  btn_list.style.display = 'block'
+                  btn_list.style.display = "block";
                   btn_list.style.transform = "translateX(0)";
-                  btn_list.style.transition = 'all 0.5s'
+                  btn_list.style.transition = "all 0.5s";
                   isResponsive.u = false;
                 }
               }}
@@ -183,7 +189,7 @@ const Header = () => {
               onChange={(event) => {
                 setKeyData(event.target.value);
                 setPageData(1);
-                handleSearchProgress(keyData,pageData)
+                handleSearchProgress(keyData, pageData);
               }}
             />
           </form>
@@ -215,22 +221,20 @@ const Header = () => {
                 onClick={() => {
                   let count = pageData + 1;
                   setPageData(count);
-                  handleSearchProgress(keyData,pageData)
+                  handleSearchProgress(keyData, pageData);
                 }}
               >
                 Load more
               </button>
             </div>
           ) : null}
-          <ul
-            className="sm:hidden sm:space-y-3 md:space-y-0 mx-3 md:flex list-none md:items-center sm:text-center"
-          >
+          <ul className="sm:hidden sm:space-y-3 md:space-y-0 mx-3 md:flex list-none md:items-center sm:text-center">
             <li>
               <Link
                 to={"/business"}
                 className="text-sm text-slate-700 mx-3 font-normal hover:text-purple-500 duration-500"
               >
-                Udemy Business
+                learnit Business
               </Link>
             </li>
             <li>
@@ -238,7 +242,7 @@ const Header = () => {
                 to={"/teacher"}
                 className="text-sm text-slate-700 mx-3 font-normal hover:text-purple-500 duration-500"
               >
-                Teach on Udemy
+                Teach With Us
               </Link>
             </li>
             <li>
@@ -270,7 +274,6 @@ const Header = () => {
             </li>
           </ul>
           {renderUser()}
-          
         </div>
       </nav>
       <nav className="py-2 sm:hidden md:block category_nav">
@@ -290,7 +293,7 @@ const Header = () => {
           })}
         </ul>
       </nav>
-      <ResponsiveMenu/>
+      <ResponsiveMenu />
     </header>
   );
 };

@@ -9,8 +9,8 @@ const CheckOut = () => {
   const clicked = useSignals(false);
   const user = getLocalStore("user_info");
   const courses = useRecoilValue(fetchCoursesRecoil);
-  const [successData, setSuccessData] = useState('')
-  const [failData, setFailData] = useState('')
+  const [successData, setSuccessData] = useState("");
+  const [failData, setFailData] = useState("");
 
   return (
     <>
@@ -40,7 +40,7 @@ const CheckOut = () => {
                   <option value="">Thai Lan</option>
                 </select>
                 <p className="text-sm text-slate-500 my-4">
-                  Udemy is required by law to collect applicable transaction
+                  learnit is required by law to collect applicable transaction
                   taxes for purchases made in certain tax jurisdictions.
                 </p>
               </div>
@@ -231,12 +231,12 @@ const CheckOut = () => {
                       taiKhoan: user.taiKhoan,
                     })
                       .then((result) => {
-                        setFailData('')
-                        setSuccessData('You has been subscribe this courses')
+                        setFailData("");
+                        setSuccessData("You has been subscribe this courses");
                       })
                       .catch((err) => {
-                        setFailData('Sorry, you cannot subscribe this courses')
-                        setSuccessData('')
+                        setFailData("Sorry, you cannot subscribe this courses");
+                        setSuccessData("");
                       });
                   }}
                 >
@@ -245,8 +245,18 @@ const CheckOut = () => {
                 <span className="text-sm text-slate-500 block mx-auto mt-1 mb-3 w-full text-center">
                   30-Day Money-Back Guarantee
                 </span>
-                <span className="font-normal text-green-600 w-full text-center text-sm inline-block" id="checkout_notification">{successData}</span>
-                <span className="font-normal text-red-600 w-full text-center text-sm inline-block" id="checkout_notification_fail">{failData}</span>
+                <span
+                  className="font-normal text-green-600 w-full text-center text-sm inline-block"
+                  id="checkout_notification"
+                >
+                  {successData}
+                </span>
+                <span
+                  className="font-normal text-red-600 w-full text-center text-sm inline-block"
+                  id="checkout_notification_fail"
+                >
+                  {failData}
+                </span>
               </div>
             </div>
           </div>

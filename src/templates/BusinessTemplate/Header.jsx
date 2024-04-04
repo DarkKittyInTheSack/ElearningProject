@@ -8,7 +8,7 @@ const Header = () => {
         <nav className='flex items-center p-3'>
             <div className="flex items-center mr-3">
                 <Link to={'/business'} className='px-3 py-2 outline-none'>
-                    <img src="https://business.udemy.com/wp-content/uploads/2021/04/udemy-business-logo.svg" className='w-full block' />
+                    <img src="src/assets/images/logo_trial.png" className='w-full block' />
                 </Link>
             </div>
 

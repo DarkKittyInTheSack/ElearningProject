@@ -1,5 +1,5 @@
 import React from "react";
-import { Rate } from 'antd';
+import { Rate } from "antd";
 
 const CourseRating = () => {
   return (
@@ -28,11 +28,12 @@ const CourseRating = () => {
             Rate
           </label>
 
-          <Rate className="mx-2 rate" id="rate"/>
-          
+          <Rate className="mx-2 rate" id="rate" />
         </div>
 
-        <button className="bg-purple-500 font-bold text-white px-3 py-2 mb-3 rounded">Submit your comment</button>
+        <button className="bg-purple-500 font-bold text-white px-3 py-2 mb-3 rounded">
+          Submit your comment
+        </button>
       </form>
 
       <div className="grid grid-cols-2 gap-5 items-center mb-5">
@@ -41,7 +42,7 @@ const CourseRating = () => {
             <div className="flex items-center justify-between py-5">
               <div className="flex items-center">
                 <img
-                  src="https://img-b.udemycdn.com/course/50x50/548278_b005_9.jpg"
+                  src="https://img-b.learnitcdn.com/course/50x50/548278_b005_9.jpg"
                   className="w-1/5 rounded-full mr-3"
                   alt=""
                   width={"4.8rem"}
@@ -94,7 +95,7 @@ const CourseRating = () => {
             <div className="flex items-center justify-between py-5">
               <div className="flex items-center">
                 <img
-                  src="https://img-b.udemycdn.com/course/50x50/548278_b005_9.jpg"
+                  src="https://img-b.learnitcdn.com/course/50x50/548278_b005_9.jpg"
                   className="w-1/5 rounded-full mr-3"
                   alt=""
                   width={"4.8rem"}
@@ -147,7 +148,7 @@ const CourseRating = () => {
             <div className="flex items-center justify-between py-5">
               <div className="flex items-center">
                 <img
-                  src="https://img-b.udemycdn.com/course/50x50/548278_b005_9.jpg"
+                  src="https://img-b.learnitcdn.com/course/50x50/548278_b005_9.jpg"
                   className="w-1/5 rounded-full mr-3"
                   alt=""
                   width={"4.8rem"}
@@ -200,7 +201,7 @@ const CourseRating = () => {
             <div className="flex items-center justify-between py-5">
               <div className="flex items-center">
                 <img
-                  src="https://img-b.udemycdn.com/course/50x50/548278_b005_9.jpg"
+                  src="https://img-b.learnitcdn.com/course/50x50/548278_b005_9.jpg"
                   className="w-1/5 rounded-full mr-3"
                   alt=""
                   width={"4.8rem"}

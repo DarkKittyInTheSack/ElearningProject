@@ -139,28 +139,28 @@ const StartLearning = ({ courses }) => {
           nextArrow: <SampleNextArrowResponsive />,
           prevArrow: <SamplePrevArrowResponsive />,
         },
-      }
+      },
     ],
   };
 
-  const coursesList = useContext(courses)
+  const coursesList = useContext(courses);
 
-  const user = getLocalStore('user_info')
+  const user = getLocalStore("user_info");
 
   return (
     <div className="my-10">
       <h2 className="font-bold font-serif md:text-4xl sm:text-2xl mb-8 px-5">
-        {
-          user ? `Let's start learning, ${user.taiKhoan}`: `Start your Journey`
-        }
-        
+        {user ? `Let's start learning, ${user.taiKhoan}` : `Start your Journey`}
       </h2>
       <Carousel {...setting} className="my-3 w-full space-x-4">
-        <div className="md:flex md:justify-between items-center px-2 py-2.5 border start_learning_data sm:hidden" id="data_display_start">
+        <div
+          className="md:flex md:justify-between items-center px-2 py-2.5 border start_learning_data sm:hidden"
+          id="data_display_start"
+        >
           <img
             width={"96px"}
             height={"96px"}
-            src="https://s.udemycdn.com/design-system/expressive-icons/light/1x/clock.png"
+            src="https://s.learnitcdn.com/design-system/expressive-icons/light/1x/clock.png"
             alt="#"
             className="block mr-3 mb-3"
           />
@@ -225,14 +225,14 @@ const StartLearning = ({ courses }) => {
       >
         <h2 className="font-medium text-base">
           <span className="font-bold">Training 5 or more people?</span>Get your
-          team access to Udemy's top 25,000+ courses
+          team access to learnit's top 25,000+ courses
         </h2>
         <div className="md:my-1 sm:my-3">
           <Link
             to={"/business"}
             className="p-2 bg-white text-black border border-white font-medium md:mx-3 sm:mr-3"
           >
-            Get Udemy Business
+            Get learnit Business
           </Link>
           <button
             className="font-medium p-2 border border-white"
